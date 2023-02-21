@@ -19,6 +19,8 @@ export class TeamComponent implements OnInit{
   new_description!:string
   image!:string;
 
+  webDevelopers!:Developer[];
+
   updateForm = new FormGroup({
     description: new FormControl('')
   })
@@ -46,13 +48,16 @@ export class TeamComponent implements OnInit{
 
   ngOnInit(): void {
     this.developers = [];
+    this.webDevelopers = [];
     this.name = '',
     this.new_description = '';
     this.image = '';
     
    this.developerService.getDeveloperBoard().subscribe({
       next: (data:any) =>{
-        this.developers = data;        
+        this.developers = data;             
+        this.webDevelopers =this.developers.filter(dev => dev.type == 'web')
+        console.log(this.webDevelopers);      
       }
     });
   }
@@ -60,29 +65,18 @@ export class TeamComponent implements OnInit{
    * Function to update a web developer description
    * @param id 
    */
-  updateDescription(id:any){
-    this.description = this.updateForm.value.description!;
-    console.log(this.description);
-    this.developerService.updateDescription(id, this.description).subscribe({
-      next: data =>{
-     console.log(data);
+  updateDescription(dev:any){
+    this.description = this.updateForm.value.description!;// lo que se ha puesto en el input   
+    this.developerService.updateDescription(dev.id, this.description).subscribe({
+      next: data => {
+        dev.description = this.description;
+        this.showDiv = false;
+      }, error: err =>{
+        this.description = 'No se ha podido actualizar la descripción';
+        console.log(err);
       }
-    })
-    //get developer por id
-    this.developerService.getDeveloper(id).subscribe({
-      next:data => {
-        console.log(data[0]);// ya viene cambiada la desc
-        this.developers.forEach(developer =>{
-          if (developer.id === id) {
-            //developer.description = data[0].description;
-            
-            
-          }
-        })
-      }
-    })
-      
-    
+    });
+  
   }
 
   /**
@@ -132,7 +126,8 @@ export class TeamComponent implements OnInit{
     console.log(this.newDeveloper);
     this.developerService.addDeveloper(this.newDeveloper).subscribe({
       next: data => {
-        this.developers.push(this.newDeveloper)
+        this.webDevelopers.push(this.newDeveloper)
+        this.showAddDiv = false
       }, error: err => {
         console.log('no se ha añadido correctamente');
       }
@@ -144,11 +139,11 @@ export class TeamComponent implements OnInit{
     this.developerService.deleteDeveloper(id).subscribe({
       next: data =>{
       
-        const aux_developers = this.developers.filter(dev =>{
+        const aux_developers = this.webDevelopers.filter(dev =>{
           return dev.id !== id;
         })
 
-        this.developers = aux_developers;
+        this.webDevelopers = aux_developers;
       },
       error: err =>{
         console.log('no se ha podido eliminar');
