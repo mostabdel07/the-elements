@@ -1,0 +1,52 @@
+<div class="flex items-center justify-center bg-black h-screen w-screen">
+  <div class="container" [ngClass]="{ hidden: show }">
+    <img src="./assets/orbe.gif" class="d-block mx-auto" alt="..." />
+    <button class="btn glow-on-hover" type="button" (click)="showGameplay()">
+      START
+    </button>
+  </div>
+
+  <!-- Section: Design Block -->
+  <section
+    class="flex items-center justify-center mb-32 text-gray-800 h-full w-full"
+    [ngClass]="{ hidden: !show }"
+  >
+    <div class="px-6 py-12 md:px-12 text-center lg:text-left">
+      <div class="container mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+          <div class="mt-12 lg:mt-0">
+            <h1
+              class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
+              style="color: hsl(218, 81%, 95%)"
+            >
+              Are you ready <br /><span style="color: hsl(218, 81%, 75%)"
+                >for an adventure?</span
+              >
+            </h1>
+            <p class="text-lg" style="color: hsl(218, 81%, 95%)">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+              officia consequatur adipisci tenetur repudiandae rerum quos.
+            </p>
+          </div>
+          <div class="mb-12 lg:mb-0">
+            <div
+              class="embed-responsive embed-responsive-16by9 relative w-full overflow-hidden rounded-lg shadow-lg"
+              style="padding-top: 56.25%"
+            >
+              <video
+                autoplay
+                muted
+                loop
+                class="embed-responsive-item absolute top-0 right-0 bottom-0 left-0 w-full h-full"
+              >
+                <source src="./assets/videos/gameplay.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+</div>

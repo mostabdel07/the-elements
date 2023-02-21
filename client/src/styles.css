@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Source+Sans+Pro:wght@300&display=swap'); /*poppins*/
+/**font-family: 'Poppins', sans-serif;**/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Source+Sans+Pro:wght@300&display=swap');/*roboto*/
+/**font-family: 'Roboto', sans-serif;**/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand:wght@300;400&family=Roboto&family=Source+Sans+Pro:wght@300&display=swap');/*Quicksand*/
+/**font-family: 'Quicksand', sans-serif; **/
+/*COLOR PRIMARIO*/
+:root{
+  --clr-primary: #1D3557;
+  --clr-secondary: #E63946;
+  --clr-light: #F1FAEE;
+  --clr-dark: #000000;
+  --clr-light-blue: #A8DADC;
+  --clr-blue: #457B9D;
+
+}
+
