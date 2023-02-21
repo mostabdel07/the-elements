@@ -35,6 +35,6 @@ export class ReviewService {
   deleteReview(reviewId: number){
     console.log("llega al delete");
     console.log(reviewId);
-    this.http.delete('http://localhost:4000/reviews/'+reviewId);
+    return this.http.delete('http://localhost:4000/reviews/'+reviewId);
   }
 }
