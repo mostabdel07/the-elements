@@ -14,6 +14,8 @@ export class NavbarComponent {
   showMenu = false;
   isLoggedIn = false;
 
+  menuShow = false;
+
   user!:User;
   username!: string;
   role!:string;
@@ -44,5 +46,6 @@ export class NavbarComponent {
   toggleNavbar(){
     this.showMenu = !this.showMenu;
   }
+
 
 }
