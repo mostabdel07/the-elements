@@ -8,26 +8,26 @@ import { UserdbService } from './userdb.service';
   providedIn: 'root',
 })
 export class AuthService {
-    private _isLoggedIn = new BehaviorSubject(false);
-    public isLoggedIn = this._isLoggedIn.asObservable();
+  // private _isLoggedIn = new BehaviorSubject(false);
+  // public isLoggedIn = this._isLoggedIn.asObservable();
 
-  constructor(private userService: UserdbService, private http:HttpClient) {}
+  constructor(private userService: UserdbService, private http: HttpClient) {}
 
+  login(username: string, password: string): Observable<any> {
+    const user: object = { username: username, password: password };
+    console.log(user);
 
-  login(username:string,password:string): Observable<any>{    
-    const user = new User(username, password);
-    const body = JSON.stringify(user);
-    console.log(body);
+    return this.http.post('http://localhost:4000/login', user, {
+      responseType: 'json',
+    });
+  }
 
-      return this.http.post('http://localhost:4000/login',body, { responseType: 'text' });
-    };
+  logout(token:object): Observable<object>{
+    console.log(token);
+   return this.http.post<object>('http://localhost:4000/logout', token, {responseType: "json"})
+  }
 
-    logout(): void {
-          this._isLoggedIn.next(false);
-      };
-
-  register(user:User):void {
-     //this.userService.addUser(user);
-
+  register(user: User): void {
+    //this.userService.addUser(user);
   }
 }

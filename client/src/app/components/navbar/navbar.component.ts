@@ -19,27 +19,31 @@ export class NavbarComponent {
   user!:User;
   username!: string;
   role!:string;
+  token!:object;
   
   constructor(private storageService: StorageService, private authService: AuthService , private userCookie: CookieService, private router: Router) { }
 
   ngOnInit(): void {
     // Check the obserbable status
-    this.authService.isLoggedIn.subscribe(status => {this.isLoggedIn = status; console.log("isLogged " ,this.isLoggedIn)});
+    //this.authService.isLoggedIn.subscribe((status) => {this.isLoggedIn = status; console.log("isLogged " ,this.isLoggedIn)});
     // Check if user is in localStorage
     this.isLoggedIn = this.storageService.isLoggedIn();
 
 
 
-    if (this.isLoggedIn) {
-      this.username = this.storageService.getUser()._username;
-      this.role = this.storageService.getUser()._role;
-    }
+    // if (this.isLoggedIn) {
+    //   this.username = this.storageService.getUser()._username;
+    //   this.role = this.storageService.getUser()._role;
+    // }
   }
   
   getLogout(): void {
+    this.token = this.storageService.getUser()
+    console.log(this.token);
+    this.authService.logout(this.token);
     this.storageService.removeUser();
     this.userCookie.delete('userCookie');
-    this.authService.logout();
+    this.isLoggedIn = false;
     this.router.navigate(['/'])
     }
 

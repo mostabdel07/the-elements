@@ -4,7 +4,7 @@ export class User {
     private _password :string;
     private _email :string;
 
-    constructor(username:string, password:string, id:number=999, email:string="example@example.com",){
+    constructor( id:number,username:string, password:string, email:string="example@example.com",){
         this._id = id;
         this._username=username;
         this._password=password;

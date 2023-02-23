@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit{
     this.cp = 1;
     this.getUsersObservables().then((usersdb)=>{
       usersdb.forEach((dbuser: any) => {
-        this.user = new User(dbuser.name,dbuser.password,dbuser.id,dbuser.email);
+        this.user = new User(dbuser.id,dbuser.name,dbuser.password,dbuser.email);
         this.users.push(this.user);
       })
     });
