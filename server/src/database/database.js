@@ -3,7 +3,7 @@ import config from "./../config";
 
 const connection = mysql.createConnection({
   host: "127.0.0.1",
-  database: config.database,
+  database: "TheElements",
   //user: config.user,
   user: "root",
   password: config.password,

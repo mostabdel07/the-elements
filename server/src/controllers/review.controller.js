@@ -33,24 +33,26 @@ const getReview = async (req, res) => {
 const addReview = async (req, res) => {
   try {
     console.log(req.body);
-    const { username, profileUrl, comment } = req.body;
+    const { _username, _profileUrl, _comment } = req.body;
+    const user_id = 3;
 
     if (
-      username === undefined ||
-      profileUrl === undefined ||
-      comment === undefined
+      _username === undefined ||
+      _profileUrl === undefined ||
+      _comment === undefined ||
+      user_id === undefined
     ) {
       res.status(400).json({ message: "Bad Request, Please fill all fields." });
     }
 
-    const review = { username, profileUrl, comment };
+    // const review = { _username, _profileUrl, _comment, user_id };
+    // await connection.query("INSERT INTO reviews SET ?", review);
+
     const connection = await getConnection();
-    // Traditional Query: "INSERT INTO clients (name, programmers) VALUES ('+dni+', '+name+')";
-    //await connection.query("INSERT INTO users SET ?", review);
     await connection.query(
-      "INSERT INTO `reviews` (`id`, `username`, `profileUrl`, `comment`, `user_id`, `created_at`, `updated_at`) VALUES (NULL, 'desde', 'la', 'api3', '1', NULL, NULL)"
+      `INSERT INTO reviews (id, username, profileUrl, comment, user_id, created_at, updated_at) VALUES (NULL, "${_username}", "${_profileUrl}", "${_comment}", ${user_id}, NULL, NULL)`
     );
-    res.json({ message: "Review added" });
+    res.json({ message: "review added" });
   } catch (error) {
     console.log("va al error");
     res.status(500);
@@ -61,22 +63,29 @@ const addReview = async (req, res) => {
 // Update review
 const updateReview = async (req, res) => {
   try {
+    console.log("entro update");
     console.log(req.params);
     const { id } = req.params;
-    const { name } = req.body;
+    const { _comment } = req.body;
 
-    if (id === undefined || name === undefined) {
+    if (id === undefined || _comment === undefined) {
       res.status(400).json({ message: "Bad Request, Please fill all fields." });
     }
 
-    const user = { id };
+    // const user = { id };
     const connection = await getConnection();
-    const result = await connection.query("UPDATE reviews SET ? WHERE id = ?", [
-      user,
-      name,
-    ]);
+    // const result = await connection.query("UPDATE reviews SET ? WHERE id = ?", [
+    //   user,
+    //   comment,
+    // ]);
+
+    const result = await connection.query(
+      `UPDATE reviews SET comment = "${_comment}" WHERE id = ${id}`
+    );
+
     res.json(result);
   } catch (error) {
+    console.log("error");
     res.status(500);
     res.send(error.message);
   }
