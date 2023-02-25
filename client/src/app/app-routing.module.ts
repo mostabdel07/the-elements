@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MultimediaComponent } from './components/multimedia/multimedia.component';
 import { TeamComponent } from './components/team/team.component';
 import { UsersComponent } from './components/users/users.component';
+import { AuthGuardGuard } from './Gards/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
   },
   {
     path:'users',
+    canActivate: [AuthGuardGuard],
     component:UsersComponent
   },
   {
