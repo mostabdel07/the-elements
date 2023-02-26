@@ -9,10 +9,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/users", userController.getUsers);
-router.get("/users/:name", userController.getUser);
+router.get("/users/:id", userController.getUser);
 router.post("/users", userController.addUser);
-router.put("/users/:name", userController.updateUser);
-router.delete("/users/:name", userController.deleteUser);
+router.put("/users/:id", userController.updateUser);
+router.delete("/users/:id", userController.deleteUser);
 
 //login
 //router.get("/login", authController.login);

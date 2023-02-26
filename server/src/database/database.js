@@ -2,11 +2,11 @@ import mysql from "promise-mysql";
 import config from "./../config";
 
 const connection = mysql.createConnection({
-  host: "127.0.0.1",
+  host: "localhost",
   database: "TheElements",
   //user: config.user,
   user: "root",
-  password: config.password,
+  password: "root",
 });
 
 const getConnection = () => {

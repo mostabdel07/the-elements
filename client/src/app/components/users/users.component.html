@@ -1,88 +1,607 @@
 <div class="w-100 h-100">
-    <div class="p-4 w-100 h-100 bg-white border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Usuarios</h3>
-      </div>
-      <div class="flex justify-between items-center mb-4">
-        <div class="max-w-lg">
-          <div class="bg-gray-800 rounded-lg border border-gray-200 w-48 text-white text-sm font-medium">
-              <a href="/users" aria-current="true" class="block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg bg-blue-700 text-white cursor-pointer">
-                  Usuarios
-              </a>
-
-              <a href="#" class="block px-4 py-2 border-b border-gray-200 w-full rounded-b-lg hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 cursor-pointer">
-                  Crear usuario
-              </a>
-          </div>
+  <div
+    class="p-4 w-100 h-100 bg-white border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+  >
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+        Usuarios
+      </h3>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <div class="max-w-lg">
+        <div
+          class="bg-gray-800 rounded-lg border border-gray-200 w-48 text-white text-sm font-medium"
+        >
+          <button
+            class="block px-4 py-2 border-b border-gray-200 w-full rounded-b-lg hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 cursor-pointer rounded-lg border"
+            data-bs-toggle="modal"
+            data-bs-target="#addUserModal"
+          >
+            Crear usuario
+          </button>
+        </div>
       </div>
     </div>
-    <button (load)="informar()">Tener usuarios</button>
     <!--List Users section-->
     <div class="w-full">
       <div class="bg-white shadow-md rounded my-6">
-          <table class="min-w-max w-full table-auto">
-              <thead>
-                  <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                      <th class="py-3 px-6 text-left">ID</th>
-                      <th class="py-3 px-6 text-left">NAME</th>
-                      <th class="py-3 px-6 text-center">EMAIL</th>
-                      <th class="py-3 px-6 text-center">PASSWORD</th>
-                      <th class="py-3 px-6 text-center">ACCION</th>
-                  </tr>
-              </thead>
-              <tbody class="text-gray-600 text-sm font-light">
-                  <tr *ngFor="let user of users | paginate: {itemsPerPage: ipp, currentPage: cp}" class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
-                      <td class="py-3 px-6 text-left">
-                          <div class="flex items-center">
-                              <span class="font-medium">{{user.id}}</span>
-                          </div>
-                      </td>
-                      <td class="py-3 px-6 text-left">
-                          <div class="flex items-center">
-                              <div class="mr-2">
-                                  <img class="w-6 h-6 rounded-full" src="./assets/images/profile-users.webp"/>
-                              </div>
-                              <span>{{user.username}}</span>
-                          </div>
-                      </td>
-                      <td class="py-3 px-6 text-center">
-                          <div class="flex items-center justify-center">
-                              <span>{{user.email}}</span>
-                          </div>
-                      </td>
-                      <td class="py-3 px-6 text-center">
-                          <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{user.password}}</span>
-                      </td>
-                      <td class="py-3 px-6 text-center">
-                          <div class="flex item-center justify-center">
-                              <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                  <a href="#">
-                                  
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                  </a>
-                              </div>
-                              <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                <form action="#" method="POST">
-                                  <span>
-                                    
-                                      <svg (click)="deleteUser(user.id)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                      </svg>
-                                  </span>
-                                </form>
-                                  
-                              </div>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-          <pagination-controls (pageChange)="cp = $event"></pagination-controls>
+        <table class="min-w-max w-full table-auto">
+          <thead>
+            <tr
+              class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+            >
+              <th class="py-3 px-6 text-left">ID</th>
+              <th class="py-3 px-6 text-left">NAME</th>
+              <th class="py-3 px-6 text-center">EMAIL</th>
+              <th class="py-3 px-6 text-center">PASSWORD</th>
+              <th class="py-3 px-6 text-center">ACCION</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 text-sm font-light">
+            <tr
+              *ngFor="
+                let user of users
+                  | paginate : { itemsPerPage: ipp, currentPage: cp }
+              "
+              class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100"
+            >
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span class="font-medium">{{ user.id }}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <div class="mr-2">
+                    <img
+                      class="w-6 h-6 rounded-full"
+                      src="./assets/images/profile-users.webp"
+                    />
+                  </div>
+                  <span>{{ user.username }}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-center">
+                <div class="flex items-center justify-center">
+                  <span>{{ user.email }}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-center">
+                <span
+                  class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs"
+                  >{{ user.password }}</span
+                >
+              </td>
+              <td class="py-3 px-6 text-center">
+                <div class="flex item-center justify-center">
+                  <div
+                    class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                  >
+                    <a>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        (click)="getUserToUpdate(user)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateUserModal"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <div
+                    class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                  >
+                    <form action="#" method="POST">
+                      <span>
+                        <svg
+                          (click)="deleteUser(user.id)"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </span>
+                    </form>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="cp = $event"></pagination-controls>
       </div>
+    </div>
   </div>
-    <!--END-->
-  </div>
-  </div>
+</div>
 
+<!--Add user modal-->
+<div
+  class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+  id="addUserModal"
+  tabindex="-1"
+  aria-labelledby="addUserModalLabel"
+  aria-hidden="true"
+  data-modal-backdrop="static"
+>
+  <div class="modal-dialog relative w-auto pointer-events-none">
+    <div
+      class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-gray-900 bg-clip-padding rounded-md outline-none text-current"
+    >
+      <button
+        type="button"
+        class="btn-close box-content w-4 h-4 p-1 text-gray-600 border-none bg-gray-600 rounded-md opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+
+      <div
+        *ngIf="add_user_message == 'error'"
+        class="flex p-4 mt-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">ERROR!</span> El usuario no se ha podido añadir
+        </div>
+      </div>
+
+      <div
+        *ngIf="add_user_message == 'success'"
+        class="flex p-4 mt-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Correcto</span> El usuario se ha añadido correctamente
+        </div>
+      </div>
+
+
+      <div
+        *ngIf="add_user_message == 'duplicated'"
+        class="flex p-4 mt-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">ERROR!</span> Este correo electrónico ya esta registrado
+        </div>
+      </div>
+
+      <!--Form for add users-->
+
+      <section class="bg-gray-50 dark:bg-gray-900 pb-8">
+        <div class="flex flex-col px-6 py-8 mx-auto lg:py-0">
+          <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+              >
+                Crea un usuario
+              </h1>
+              <form
+                [formGroup]="addUserForm"
+                (ngSubmit)="addUser()"
+                class="space-y-4 md:space-y-6"
+              >
+                <div>
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Username</label
+                  >
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    formControlName="username"
+                    placeholder="Nombre"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      addUserForm.get('username')?.invalid &&
+                      addUserForm.get('username')?.errors &&
+                      (addUserForm.get('username')?.dirty ||
+                        addUserForm.get('username')?.touched)
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('username')?.hasError('required')"
+                    >
+                      El nombre de usuario es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('username')?.hasError('minlength')"
+                    >
+                      El nombre de usuario debe tener como minimo 3 caráctereso
+                    </small>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Correo electrónico</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    required=""
+                  />
+                  <div
+                    *ngIf="
+                      addUserForm.get('email')?.invalid &&
+                      addUserForm.get('email')?.errors &&
+                      (addUserForm.get('email')?.dirty ||
+                        addUserForm.get('email')?.touched)
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('email')?.hasError('required')"
+                    >
+                      El correo electrónico es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('email')?.hasError('email')"
+                    >
+                      Este correo electrónico no tiene el formato adecuado
+                    </small>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Contraseña</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    formControlName="password"
+                    required=""
+                  />
+                  <div
+                    *ngIf="
+                      addUserForm.get('password')?.invalid &&
+                      addUserForm.get('password')?.errors &&
+                      (addUserForm.get('password')?.dirty ||
+                        addUserForm.get('password')?.touched)
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('password')?.hasError('required')"
+                    >
+                      La contraseña es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="addUserForm.get('password')?.hasError('minlength')"
+                    >
+                      La contraseña debe tener 8 caracteres como minimo
+                    </small>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  [disabled]="addUserForm.invalid"
+                >
+                  Crear usuario
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!--Update user modal-->
+<div
+  class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+  id="updateUserModal"
+  tabindex="-1"
+  aria-labelledby="updateUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog relative w-auto pointer-events-none">
+    <div
+      class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-gray-900 bg-clip-padding rounded-md outline-none text-current"
+    >
+      <button
+        type="button"
+        class="btn-close box-content w-4 h-4 p-1 text-gray-600 border-none bg-gray-600 rounded-md opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+
+      <div
+        *ngIf="update_user_message == 'error'"
+        class="flex p-4 mt-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">ERROR!</span> No se ha podido modificar el usuario.
+        </div>
+      </div>
+
+      <div
+        *ngIf="update_user_message == 'duplicated'"
+        class="flex p-4 mt-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">ERROR!</span> Este correo electrónico ya esta registrado.
+        </div>
+      </div>
+
+      <div
+        *ngIf="update_user_message == 'success'"
+        class="flex p-4 mt-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Correcto</span> El usuario se ha añadido correctamente
+        </div>
+      </div>
+
+      <!--Form for update users-->
+
+      <section class="bg-gray-50 dark:bg-gray-900 pb-8">
+        <div class="flex flex-col px-6 py-8 mx-auto lg:py-0">
+          <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+              >
+                Editar Usuario
+              </h1>
+              <form
+                [formGroup]="editUserForm"
+                (ngSubmit)="updateUser()"
+                class="space-y-4 md:space-y-6"
+              >
+                <div>
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Username</label
+                  >
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    formControlName="username"
+                    placeholder="Nombre"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    aria-label="disabled input"
+                  />
+                  <div
+                    *ngIf="
+                      editUserForm.get('username')?.invalid &&
+                      editUserForm.get('username')?.errors &&
+                      editUserForm.get('username')?.dirty
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="editUserForm.get('username')?.hasError('required')"
+                    >
+                      El nombre de usuario es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="
+                        editUserForm.get('username')?.hasError('minlength')
+                      "
+                    >
+                      El nombre de usuario debe tener como minimo 3 caráctereso
+                    </small>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Correo electrónico</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    required=""
+                  />
+                  <div
+                    *ngIf="
+                      editUserForm.get('email')?.invalid &&
+                      editUserForm.get('email')?.errors &&
+                      editUserForm.get('email')?.dirty
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="editUserForm.get('email')?.hasError('required')"
+                    >
+                      El correo electrónico es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="editUserForm.get('email')?.hasError('email')"
+                    >
+                      Este correo electrónico no tiene el formato adecuado
+                    </small>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Contraseña</label
+                  >
+                  <input
+                    type="text"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    formControlName="password"
+                    required=""
+                  />
+                  <div
+                    *ngIf="
+                      editUserForm.get('password')?.invalid &&
+                      editUserForm.get('password')?.errors &&
+                      editUserForm.get('password')?.dirty
+                    "
+                  >
+                    <small
+                      class="text-red-600"
+                      *ngIf="editUserForm.get('password')?.hasError('required')"
+                    >
+                      La contraseña es obligatorio
+                    </small>
+                    <small
+                      class="text-red-600"
+                      *ngIf="
+                        editUserForm.get('password')?.hasError('minlength')
+                      "
+                    >
+                      La contraseña debe tener 8 caracteres como minimo
+                    </small>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  [disabled]="editUserForm.invalid"
+                >
+                  Actualizar usuario
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!--END-->
