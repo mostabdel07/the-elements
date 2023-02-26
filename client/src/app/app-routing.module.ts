@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MultimediaComponent } from './components/multimedia/multimedia.component';
 import { TeamComponent } from './components/team/team.component';
 import { UsersComponent } from './components/users/users.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path: 'register',
+    component:RegisterComponent
   }
 ];
 

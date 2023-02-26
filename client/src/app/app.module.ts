@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ObjToArrayPipe } from './pipes/obj-to-array.pipe';
 import { UsersComponent } from './components/users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RegisterComponent } from './components/register/register.component';
+import { MatchPasswordDirective } from './directives/match-password.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     FooterComponent,
     ObjToArrayPipe,
-    UsersComponent
+    UsersComponent,
+    RegisterComponent,
+    MatchPasswordDirective
   ],
   imports: [
     BrowserModule,
