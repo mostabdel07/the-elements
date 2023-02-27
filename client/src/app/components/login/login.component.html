@@ -91,6 +91,7 @@
                       Log in
                     </button>
                     <a class="text-gray-500" href="#!">Forgot password?</a>
+                    <p *ngIf="errorMessage" class="text-red-600">{{errorMessage}}</p>
                   </div>
                 </form>
               </div>
@@ -125,3 +126,4 @@
     </div>
   </div>
 </section>
+

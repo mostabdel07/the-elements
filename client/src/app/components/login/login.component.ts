@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   role!: string;
 
+  aux!: any;
+
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
@@ -43,36 +45,24 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     const { username, password } = this.form;
 
-    this.authService.login(username, password).subscribe({
-      next: (data) => {
-        console.log('respuesta bd ' + JSON.stringify(data));
-        this.isLoginFailed = false;
+    this.authService.login(username, password).subscribe((res) => {
+      if (res !== null) {
+        console.log(res); //devuelve token
+        console.log('respuesta bd');
+        // Save on localStorage
+        this.storageService.saveUser(res);
+        //Save cookie
+        this.userCookie.set('userCookie', JSON.stringify(res));
+        this.aux = this.authService.isLoggedIn.subscribe((data) => {
+          console.log('aux' + data);
+        });
 
-        this.user_token = data;
-
-        if (this.user_token != null) {
-          // Save on localStorage
-          this.storageService.saveUser(this.user_token);
-          // Save on Cookie
-          this.userCookie.set('userCookie', JSON.stringify(this.user_token), {
-            expires: 3,
-          });
-
-          this.isLoginFailed = false;
-          //this.role = this.storageService.getUser()._role;
-          this.isLoggedIn = true;
-          this.router.navigate(['/']);
-        } else {
-          this.errorMessage = 'error';
-          this.isLoginFailed = true;
-          console.log(this.errorMessage);
-        }
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-        console.log(err.error.message);
-      },
+        this.router.navigate(['']);
+      } else {
+        //login failed
+        this.errorMessage = 'Incorrects username or password';
+        console.log(this.errorMessage);
+      }
     });
   }
 }
