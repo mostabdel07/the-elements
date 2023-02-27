@@ -12,12 +12,15 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ObjToArrayPipe } from './pipes/obj-to-array.pipe';
 import { UsersComponent } from './components/users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RegisterComponent } from './components/register/register.component';
 import { MatchPasswordDirective } from './directives/match-password.directive';
+
+// Interceptors
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,12 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi:true //allow to add more interceptors if is needed
+  },
+    CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
