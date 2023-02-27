@@ -1,155 +1,159 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Developer } from 'src/app/models/developer/developer';
+import { AuthService } from 'src/app/services/auth.service';
 import { DeveloperService } from 'src/app/services/developer.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css']
+  styleUrls: ['./team.component.css'],
 })
-export class TeamComponent implements OnInit{
+export class TeamComponent implements OnInit {
   developers!: Developer[];
-  newDeveloper!:Developer;
-  description!:string;
-  showDiv:boolean = false;
-  showAddDiv:boolean = false;
-  selected_id!:any;
-  name!:string;
-  new_description!:string
-  image!:string;
+  newDeveloper!: Developer;
+  description!: string;
+  showDiv: boolean = false;
+  showAddDiv: boolean = false;
+  selected_id!: any;
+  name!: string;
+  new_description!: string;
+  image!: string;
+  isLoggedIn = false;
 
-  webDevelopers!:Developer[];
+  webDevelopers!: Developer[];
 
   updateForm = new FormGroup({
-    description: new FormControl('')
-  })
+    description: new FormControl(''),
+  });
 
   addForm = new FormGroup({
-    name: new FormControl('',[
+    name: new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z]+'),
     ]),
-    new_description: new FormControl('',[
-      Validators.required
-    ]),
-    image: new FormControl('',[
-      Validators.required
-    ]),
-    type: new FormControl('')
-  })
-  
+    new_description: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
+    type: new FormControl(''),
+  });
 
-
-
-  constructor(private developerService:DeveloperService) {
-
-  }
+  constructor(
+    private developerService: DeveloperService,
+    private authService: AuthService,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.developers = [];
     this.webDevelopers = [];
-    this.name = '',
-    this.new_description = '';
+    (this.name = ''), (this.new_description = '');
     this.image = '';
-    
-   this.developerService.getDeveloperBoard().subscribe({
-      next: (data:any) =>{
-        this.developers = data;             
-        this.webDevelopers =this.developers.filter(dev => dev.type == 'web')
-        console.log(this.webDevelopers);      
-      }
+
+    this.developerService.getDeveloperBoard().subscribe({
+      next: (data: any) => {
+        this.developers = data;
+        this.webDevelopers = this.developers.filter((dev) => dev.type == 'web');
+        console.log(this.webDevelopers);
+      },
     });
+
+    // Check the obserbable status
+    this.authService.isLoggedIn.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+    // Check if user is in localStorage
+    this.isLoggedIn = this.storageService.isLoggedIn();
   }
   /**
    * Function to update a web developer description
-   * @param id 
+   * @param id
    */
-  updateDescription(dev:any){
-    this.description = this.updateForm.value.description!;// lo que se ha puesto en el input   
-    this.developerService.updateDescription(dev.id, this.description).subscribe({
-      next: data => {
-        dev.description = this.description;
-        this.showDiv = false;
-      }, error: err =>{
-        this.description = 'No se ha podido actualizar la descripción';
-        console.log(err);
-      }
-    });
-  
+  updateDescription(dev: any) {
+    this.description = this.updateForm.value.description!; // lo que se ha puesto en el input
+    this.developerService
+      .updateDescription(dev.id, this.description)
+      .subscribe({
+        next: (data) => {
+          dev.description = this.description;
+          this.showDiv = false;
+        },
+        error: (err) => {
+          this.description = 'No se ha podido actualizar la descripción';
+          console.log(err);
+        },
+      });
   }
 
   /**
    * Function to show update form
-   * @param id 
+   * @param id
    */
-  displayForm(id:any){
-    this.showAddDiv = false
+  displayForm(id: any) {
+    this.showAddDiv = false;
     this.selected_id = id;
     if (this.selected_id !== 0) {
-      this.showDiv = true
+      this.showDiv = true;
     } else {
-      this.showDiv = false
+      this.showDiv = false;
     }
   }
 
   /**
    * Function to show add form
-   * @param id 
+   * @param id
    */
-  displayAddForm(id:any){
-    this.showDiv = false
+  displayAddForm(id: any) {
+    this.showDiv = false;
     this.selected_id = id;
     if (this.selected_id !== 0) {
-      this.showAddDiv = true
+      this.showAddDiv = true;
     } else {
-      this.showAddDiv = false
+      this.showAddDiv = false;
     }
   }
 
-  closeForm(){
+  closeForm() {
     this.selected_id = 0;
   }
 
   /**
    * Function to add a new web developer
    */
-  addWebDeveloper(){
-    console.log(this.developers.length);//7
+  addWebDeveloper() {
+    console.log(this.developers.length); //7
     let id = this.developers.length + 1;
     this.newDeveloper = new Developer(
       id,
       this.addForm.value.name!,
       this.addForm.value.new_description!,
-      `/images/devs/${this.addForm.value.image}.jpg`,
-    )
+      `/images/devs/${this.addForm.value.image}.jpg`
+    );
     console.log(this.newDeveloper);
     this.developerService.addDeveloper(this.newDeveloper).subscribe({
-      next: data => {
-        this.webDevelopers.push(this.newDeveloper)
-        this.showAddDiv = false
-      }, error: err => {
+      next: (data) => {
+        this.webDevelopers.push(this.newDeveloper);
+        this.showAddDiv = false;
+      },
+      error: (err) => {
         console.log('no se ha añadido correctamente');
-      }
-    })
+      },
+    });
   }
 
-  deleteDeveloper(id:any){
+  deleteDeveloper(id: any) {
     console.log(id);
     this.developerService.deleteDeveloper(id).subscribe({
-      next: data =>{
-      
-        const aux_developers = this.webDevelopers.filter(dev =>{
+      next: (data) => {
+        const aux_developers = this.webDevelopers.filter((dev) => {
           return dev.id !== id;
-        })
+        });
 
         this.webDevelopers = aux_developers;
       },
-      error: err =>{
+      error: (err) => {
         console.log('no se ha podido eliminar');
-      }
-    })
+      },
+    });
   }
-  
-
 }

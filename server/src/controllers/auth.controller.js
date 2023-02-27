@@ -24,10 +24,10 @@ const login = async (req, res) => {
         { expiresIn: "1h" }
       );
       tokens_list.push(accessToken);
-    
+
       res.json(accessToken);
     } else {
-      res.send({message:"Incorrect username or password"});
+      res.send(null);
     }
   } catch (error) {
     res.status(500);
@@ -35,19 +35,19 @@ const login = async (req, res) => {
   }
 };
 
-const logout = (req,res) =>{
+const logout = (req, res) => {
   try {
     const { token } = req.body;
-    tokens_list = tokens_list.filter(t => t !== token)
+    tokens_list = tokens_list.filter((t) => t !== token);
     console.log(tokens_list);
-    res.send({message: "Logout successfull"})
+    res.send({ message: "Logout successfull" });
   } catch (error) {
     res.status(500);
-    res.send(error.message)
+    res.send(error.message);
   }
-}
+};
 
 export const methods = {
   login,
-  logout
+  logout,
 };
