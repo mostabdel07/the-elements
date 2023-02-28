@@ -9,6 +9,7 @@ import { TeamComponent } from './components/team/team.component';
 import { UsersComponent } from './components/users/users.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuardGuard } from './Gards/auth-guard.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
     path:'users',
     canActivate: [AuthGuardGuard],
     component:UsersComponent
+  },
+  {
+    path:'profile',
+    canActivate: [AuthGuardGuard],
+    component:ProfileComponent
   },
   {
     path:'login',
