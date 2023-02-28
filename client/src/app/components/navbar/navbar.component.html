@@ -5,13 +5,84 @@
         src="./assets/images/logo-white.png"
         class="h-6 mr-3 sm:h-20"
         alt="logo"
-      />L
-      <span
-        class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-        >The Elements</span
-      >
+      />
     </a>
-    <div class="flex items-center justify-items-center">
+    <div class="flex items-center md:order-2">
+      <ng-template #logout>
+        <a
+          href="/login"
+          class="relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-full shadow-2xl group"
+        >
+          <span
+            class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-red-500 rounded-full blur-md ease"
+          ></span>
+          <span
+            class="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease"
+          >
+            <span
+              class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-purple-500 rounded-full blur-md"
+            ></span>
+            <span
+              class="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"
+            ></span>
+          </span>
+          <span class="relative text-white"
+            ><i class="fa-solid fa-user"></i> Login</span
+          >
+        </a>
+      </ng-template>
+      <div
+        *ngIf="isLoggedIn; else logout"
+        class="relative"
+        data-te-dropdown-ref
+      >
+        <button
+          type="button"
+          class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          id="dropdownMenuButton2"
+          role="button"
+          data-te-dropdown-toggle-ref
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open user menu</span>
+          <img
+            class="w-8 h-8 rounded-full"
+            src="./assets/images/profile-users.webp"
+            alt="user photo"
+          />
+        </button>
+        <ul
+          class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+          aria-labelledby="dropdownMenuButton2"
+          data-te-dropdown-menu-ref
+        >
+          <li>
+            <a
+              class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+              href="#"
+              data-te-dropdown-item-ref
+              >Perfil</a
+            >
+          </li>
+          <li>
+            <a
+              class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+              href="#"
+              data-te-dropdown-item-ref
+              >Another action</a
+            >
+          </li>
+          <li>
+            <a
+              class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+              href="#"
+              data-te-dropdown-item-ref
+              (click)="getLogout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
       <div
         id="nav-icon1"
         [ngClass]="{ open: showMenu }"
@@ -25,8 +96,8 @@
     </div>
     <div
       [ngClass]="{ hidden: !showMenu }"
-      class="items-center justify-between w-full md:flex md:w-auto"
-      id="navbar-cta"
+      class="items-center justify-between w-full md:flex md:w-auto md:order-1"
+      id="mobile-menu-2"
     >
       <ul
         class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
@@ -36,65 +107,45 @@
             href="/"
             class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
             aria-current="page"
-            >Home</a
+            >Inicio</a
           >
         </li>
         <li>
           <a
             href="/features"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Features</a
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >features</a
           >
         </li>
         <li>
           <a
             href="/team"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Team</a
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Equipo</a
           >
         </li>
         <li>
           <a
             href="/multimedia"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
             >Multimedia</a
           >
         </li>
         <li>
           <a
             href="/contact"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Contact</a
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Contacto</a
           >
         </li>
         <li *ngIf="isLoggedIn">
           <a
             href="/users"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
             >Users</a
           >
         </li>
-        <li *ngIf="isLoggedIn; else logout">
-          <a
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            (click)="getLogout()"
-          >
-            <i class="fa-solid fa-user"></i> Log Out
-          </a>
-        </li>
-        <ng-template #logout>
-          <li>
-            <a
-              href="/login"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              <i class="fa-solid fa-user"></i> Log In
-            </a>
-          </li>
-        </ng-template>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- Nuevo navbar -->

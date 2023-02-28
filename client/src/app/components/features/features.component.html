@@ -209,102 +209,56 @@
     <!-- Carousel -->
     <div
       id="carouselExampleCaptions"
-      class="carousel slide relative carousel-dark"
-      data-bs-ride="carousel"
+      class="relative"
+      data-te-carousel-init
+      data-te-carousel-slide
     >
-      <div class="carousel-inner relative w-full overflow-hidden">
+      <div
+        class="relative w-full overflow-hidden after:clear-both after:block after:content-['']"
+        *ngFor="let review of reviews; index as i"
+      >
         <div
-          class="carousel-item relative float-left w-full text-center"
-          *ngFor="let review of reviews; index as i"
-          [ngClass]="{ active: i == 0 }"
+          class="relative float-left -mr-[100%] hidden w-full text-center transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-active
+          data-te-carousel-item
+          style="backface-visibility: hidden"
         >
-          <p class="text-xl italic mx-auto text-gray-700 max-w-4xl">
-            "{{ review.comment }}"
+          <p
+            class="mx-auto max-w-4xl text-xl italic text-neutral-700 dark:text-neutral-300"
+          >
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
+            error amet numquam iure provident voluptate esse quasi, voluptas
+            nostrum quisquam!"
           </p>
-          <ul class="flex justify-center">
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="mr-1 h-5 w-5 text-warning"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </li>
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="mr-1 h-5 w-5 text-warning"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </li>
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="mr-1 h-5 w-5 text-warning"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </li>
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="mr-1 h-5 w-5 text-warning"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                />
-              </svg>
-            </li>
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="mr-1 h-5 w-5 text-warning"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                />
-              </svg>
-            </li>
-          </ul>
           <div class="mt-12 mb-6 flex justify-center">
             <img
-              src="./assets/images/{{ review.profileUrl }}"
-              class="rounded-full w-24 h-24 shadow-lg"
+              src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+              class="h-24 w-24 rounded-full shadow-lg dark:shadow-black/30"
               alt="smaple image"
             />
           </div>
-          <p class="text-gray-500">- {{ review.username }}</p>
+          <p class="text-neutral-500 dark:text-neutral-300">- Anna Morian</p>
+        </div>
+        <div
+          class="relative float-left -mr-[100%] hidden w-full text-center transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden"
+        >
+          <p
+            class="mx-auto max-w-4xl text-xl italic text-neutral-700 dark:text-neutral-300"
+          >
+            "{{ review.comment }}"
+          </p>
+          <div class="mt-12 mb-6 flex justify-center">
+            <img
+              src="./assets/images/{{ review.profileUrl }}"
+              class="h-24 w-24 rounded-full shadow-lg dark:shadow-black/30"
+              alt="smaple image"
+            />
+          </div>
+          <p class="text-neutral-500 dark:text-neutral-300">
+            - {{ review.username }}
+          </p>
           <div>
             <button
               class="inline-flex items-center justify-center w-8 h-8 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline hover:bg-gray-200"
@@ -330,37 +284,59 @@
         </div>
       </div>
       <button
-        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+        class="absolute top-0 bottom-0 left-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none dark:text-white dark:opacity-50 dark:hover:text-white dark:focus:text-white"
         type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide="prev"
       >
+        <span class="inline-block h-8 w-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </span>
         <span
-          class="carousel-control-prev-icon inline-block bg-no-repeat"
-          aria-hidden="true"
-        ></span>
-        <span class="visually-hidden">Previous</span>
+          class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+          >Previous</span
+        >
       </button>
       <button
-        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+        class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none dark:text-white dark:opacity-50 dark:hover:text-white dark:focus:text-white"
         type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide="next"
       >
+        <span class="inline-block h-8 w-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </span>
         <span
-          class="carousel-control-next-icon inline-block bg-no-repeat"
-          aria-hidden="true"
-        ></span>
-        <span class="visually-hidden">Next</span>
+          class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+          >Next</span
+        >
       </button>
-    </div>
-    <div
-      class="flex flex-col text-center w-full mb-20"
-      *ngIf="reviews.length == 0"
-    >
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-        No se encuentran reseñas.
-      </p>
     </div>
 
     <div class="text-center mt-5">

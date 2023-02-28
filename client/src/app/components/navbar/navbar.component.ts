@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit, OnChanges {
   @Input() logged!: boolean;
 
   showMenu = false;
+  showUser = false;
   isLoggedIn = false;
 
   menuShow = false;
@@ -72,5 +73,9 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   toggleNavbar() {
     this.showMenu = !this.showMenu;
+  }
+
+  toggleDropdown() {
+    this.showUser = !this.showUser;
   }
 }
