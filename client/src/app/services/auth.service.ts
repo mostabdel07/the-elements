@@ -11,7 +11,7 @@ export class AuthService {
   private _isLoggedIn = new BehaviorSubject(false);
   public isLoggedIn = this._isLoggedIn.asObservable();
 
-  constructor(private userService: UserdbService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     const user: object = { username: username, password: password };
@@ -28,14 +28,5 @@ export class AuthService {
         return res;
       })
     );
-  }
-
-  // logout(token:object): Observable<object>{
-  //   console.log(token);
-  //  return this.http.post<object>('http://localhost:4000/logout', token, {responseType: "json"})
-  // }
-
-  register(user: User): void {
-    //this.userService.addUser(user);
   }
 }

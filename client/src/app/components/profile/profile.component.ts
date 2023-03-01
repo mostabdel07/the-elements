@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userCookie: CookieService,) {}
 
   ngOnInit(): void {
+    //Recoge la informacion del usuario logeado actual de la cookie
     this.userData = JSON.parse(this.userCookie.get('userCookie'));
     console.log(this.userData);
   }

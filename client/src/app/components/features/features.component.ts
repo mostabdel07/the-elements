@@ -31,7 +31,6 @@ export class FeaturesComponent implements OnInit{
  
     username:new FormControl('',[
       Validators.required,
-      // Validators.minLength(6)
     ]),
 
     comment: new FormControl('',[

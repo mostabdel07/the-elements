@@ -54,11 +54,6 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.authService.isLoggedIn.subscribe((status) => {this.isLoggedIn = status;});
     // Check if user is in localStorage
     this.isLoggedIn = this.storageService.isLoggedIn();
-
-    // if (this.isLoggedIn) {
-    //   this.username = this.storageService.getUser()._username;
-    //   this.role = this.storageService.getUser()._role;
-    // }
   }
 
   getLogout(): void {
