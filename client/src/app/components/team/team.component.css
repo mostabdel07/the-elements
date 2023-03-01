@@ -35,3 +35,21 @@
     box-shadow: 1px 8px 20px rgba(3, 3, 3, 0.3);
     -webkit-transition: box-shadow .3s ease-in;
 }
+
+#animation_svg{
+    width: 100px;
+    height: 100px;
+}
+
+animate-bounce	{animation: bounce 1s infinite};
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}

@@ -2,137 +2,145 @@
 <div class="team">
   <div class="spacer layer1">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4">
-      <div class="text-center py-20 xl:py-64">
-        <!-- icon -->
-        <!-- <div class=" mb-5">
-          <img src="./assets/images/logo_elements.png" alt="team logo" class="d-block mx-auto " id="logo-team" />
-        </div> -->
+      <div class="text-center py-18 md:py-40 xl:pt-56" id="main_title">
         <h1 class="tracking-wide sm:mx-auto sm:w-10/12  font-extrabold text-5xl text-left sm:text-9xl md:text-7xl lg:w-auto lg:text-left xl:text-9xl xl text-amber-100">
          CONOCE  <br class="lg:block hidden">
          <span class=" relative text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">EL EQUIPO</span>
         </h1>
       </div>
+      <div class="invisible xl:visible relative rounded-xl overflow-auto p-3 py-8 mb-8">      
+            <div class="flex justify-center">
+              <div class="animate-bounce bg-clip-padding bg-opacity-60  bg-amber-50 p-2 w-10 h-10 ring-1 ring-slate-900/5 shadow-lg rounded-full flex items-center justify-center hover:opacity-80" id="animation_svg" >
+                <svg class="w-14 h-14 text-violet-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+              </div>
+          </div>
       <div class="text-center mb-10 sm:m-20">
         <h2 class="text-4xl md:text-6xl font-bold relative  bg-clip-text text-amber-100 mb-5 mt-8">
          Game developers
         </h2>
       </div>
-      <!-- {{-- Web developers --}} -->
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="" *ngFor="let developer of developers">
-          <div
-            class="lg:w-full md:w-96 md:mx-auto bg-white rounded-lg p-4 flex flex-col justify-top items-center  bg-clip-padding bg-opacity-60 card"
-            style="backdrop-filter: blur(20px);" *ngIf="developer.type ==='game'">
-            <div class="mb-8 py-12">
-              <img class="object-center object-cover rounded-full h-36 w-36 grayscale"
-                src="./assets/{{developer.image}}" alt="{{developer.name}}" />
-            </div>
-            <div class="text-center">
-              <p class="td-block text-xl text-gray-700 font-extrabold mb-2 h-16">
-                {{developer.name}}
-              </p>
-              <p class="text-base text-gray-800 font-normal h-24">
-                {{developer.description}}
-              </p>
+      </div>
+      <section id="developers_section">
+        <!-- {{-- Web developers --}} -->
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="" *ngFor="let developer of developers">
+            <div
+              class="lg:w-full md:w-96 md:mx-auto bg-white rounded-lg p-4 flex flex-col justify-top items-center  bg-clip-padding bg-opacity-60 card"
+              style="backdrop-filter: blur(20px);" *ngIf="developer.type ==='game'">
+              <div class="mb-8 py-12">
+                <img class="object-center object-cover rounded-full h-36 w-36 grayscale"
+                  src="./assets/{{developer.image}}" alt="{{developer.name}}" />
+              </div>
+              <div class="text-center">
+                <p class="td-block text-xl text-gray-700 font-extrabold mb-2 h-16">
+                  {{developer.name}}
+                </p>
+                <p class="text-base text-gray-800 font-normal h-24">
+                  {{developer.description}}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="text-center mb-20 lg:mt-10 ">
-        <h2 class="text-4xl md:text-6xl font-bold relative  text-amber-100">
-          Web developers
-        </h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-20 mt-4">
-        <div class="" *ngFor="let developer of webDevelopers">
-          <div
-            class="lg:w-full md:w-80 mx-auto bg-white rounded-lg p-4 flex flex-col justify-top items-center  bg-clip-padding bg-opacity-60 card"
-            style="backdrop-filter: blur(20px);">           
-            <div class="mb-8 py-12">
-              <img class="object-center object-cover rounded-full h-36 w-36 grayscale"
-                src="./assets/{{developer.image}}" alt="{{developer.name}}" />
-            </div>
-            <div class="text-center">
-              <p class="td-block text-xl text-gray-700 font-bold mb-2 h-14">
-                {{developer.name}}
-              </p>
-              <p class="text-base text-gray-800 font-normal mt-1">
-                {{developer.description}}
-              </p>
-            </div>
-            <div class="flex justify-center mt-5 gap-6"  *ngIf="isLoggedIn">
-              <button type="button" (click)="displayForm(developer.id)">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  class="edit_svg text-center">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-              </button>
-              <button type="button" class="hover:text-blue-400" (click)="displayAddForm(developer.id)">
-                <i class="fa-solid fa-user-plus"></i>
-              </button>
-              <button type="button" class="hover:text-red-600" (click)="deleteDeveloper(developer.id)">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-            </div>
-
-            <!-- Update form -->
-            <div class="" *ngIf="showDiv && selected_id === developer.id">
-              <form [formGroup]="updateForm" (ngSubmit)="updateDescription(developer)" action="" method="PUT">
-                <div class="mt-3">
-                  <label for="message" class="block mb-2 text-sm font-bold text-gray-900">Descripción</label>
-                  <textarea id="message" rows="4" formControlName="description"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-purple-300"
-                    placeholder="Edita una descripción"></textarea>
-                </div>
-
-                <div class="flex justify-center mt-5">
+        <div class="text-center mb-20 lg:mt-10 ">
+          <h2 class="text-4xl md:text-6xl font-bold relative  text-amber-100">
+            Web developers
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-20 mt-4">
+          <div class="" *ngFor="let developer of webDevelopers">
+            <div
+              class="lg:w-full md:w-80 mx-auto bg-white rounded-lg p-4 flex flex-col justify-top items-center  bg-clip-padding bg-opacity-60 card"
+              style="backdrop-filter: blur(20px);">           
+              <div class="mb-8 py-12">
+                <img class="object-center object-cover rounded-full h-36 w-36 grayscale"
+                  src="./assets/{{developer.image}}" alt="{{developer.name}}" />
+              </div>
+              <div class="text-center">
+                <p class="td-block text-xl text-gray-700 font-bold mb-2 h-14">
+                  {{developer.name}}
+                </p>
+                <p class="text-base text-gray-800 font-normal mt-1">
+                  {{developer.description}}
+                </p>
+              </div>
+              <div class="flex justify-center mt-5 gap-6"  *ngIf="isLoggedIn">
+                <button type="button" (click)="displayForm(developer.id)">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="edit_svg text-center">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </button>
+                <button type="button" class="hover:text-blue-400" (click)="displayAddForm(developer.id)">
+                  <i class="fa-solid fa-user-plus"></i>
+                </button>
+                <button type="button" class="hover:text-red-600" (click)="deleteDeveloper(developer.id)">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+  
+              <!-- Update form -->
+              <div class="" *ngIf="showDiv && selected_id === developer.id">
+                <form [formGroup]="updateForm" (ngSubmit)="updateDescription(developer)" action="" method="PUT">
+                  <div class="mt-3">
+                    <label for="message" class="block mb-2 text-sm font-bold text-gray-900">Descripción</label>
+                    <textarea id="message" rows="4" formControlName="description"
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Edita una descripción"></textarea>
+                  </div>
+  
+                  <div class="flex justify-center mt-5">
+                    <button type="submit"
+                      class="text-white bg-gradient-to-r
+                       from-purple-500 via-purple-600
+                       to-purple-700 hover:bg-gradient-to-br
+                        focus:ring-4 focus:outline-none
+                       focus:ring-purple-300
+                        shadow-lg
+                       shadow-purple-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Update</button>
+                    <button type="button" (click)="closeForm()"
+                      class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300  shadow-lg shadow-red-500/50   font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Cancel</button>
+                  </div>
+                </form>
+              </div>
+              <!-- Add Form -->
+              <div class="" *ngIf="showAddDiv && selected_id === developer.id">
+                <form [formGroup]="addForm" (ngSubmit)="addWebDeveloper()" action="/team" method="POST"
+                class="mt-3">
+                  <div class="relative z-0 w-full mb-6 group text-left">
+                    <input type="text" name="name" id="floating_name" formControlName="name"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder="" required />
+                    <label for="floating_name"
+                      class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre
+                      completo</label>
+                  </div>
+                  <div class="relative z-0 w-full mb-6 group text-left">
+                    <input type="text" name="new_description" id="floating_password" formControlName="new_description"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder="" required />
+                    <label for="descripción"
+                      class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sobre ti</label>
+                  </div>
+                  <div class="relative z-0 w-full mb-6 group text-left">
+                    <input type="text" name="image" id="floating_repeat_password" formControlName="image"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder="" required />
+                    <label for="floating_repeat_password"
+                      class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Imagen</label>
+                  </div>                  
                   <button type="submit"
-                    class="text-white bg-gradient-to-r
-                     from-purple-500 via-purple-600
-                     to-purple-700 hover:bg-gradient-to-br
-                      focus:ring-4 focus:outline-none
-                     focus:ring-purple-300
-                     dark:focus:ring-purple-800 shadow-lg
-                     shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Update</button>
-                  <button type="button" (click)="closeForm()"
-                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Cancel</button>
-                </div>
-              </form>
-            </div>
-            <!-- Add Form -->
-            <div class="" *ngIf="showAddDiv && selected_id === developer.id">
-              <form [formGroup]="addForm" (ngSubmit)="addWebDeveloper()" action="/team" method="POST"
-              class="mt-3">
-                <div class="relative z-0 w-full mb-6 group text-left">
-                  <input type="text" name="name" id="floating_name" formControlName="name"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder="" required />
-                  <label for="floating_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre
-                    completo</label>
-                </div>
-                <div class="relative z-0 w-full mb-6 group text-left">
-                  <input type="text" name="new_description" id="floating_password" formControlName="new_description"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder="" required />
-                  <label for="descripción"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sobre ti</label>
-                </div>
-                <div class="relative z-0 w-full mb-6 group text-left">
-                  <input type="text" name="image" id="floating_repeat_password" formControlName="image"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder="" required />
-                  <label for="floating_repeat_password"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Imagen</label>
-                </div>                  
-                <button type="submit"
-                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">Añadir</button>
-              </form>
+                  class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">Añadir</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
+      </section>
     </section>
 
   </div>
