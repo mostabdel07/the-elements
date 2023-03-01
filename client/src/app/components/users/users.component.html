@@ -6,12 +6,19 @@
     <div class="flex justify-end items-center mb-4">
       <div class="max-w-lg">
         <button
-          class="inline-block cursor-pointer rounded bg-neutral-50 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-neutral-800 shadow-[0_4px_9px_-4px_#fbfbfb] transition duration-150 ease-in-out hover:bg-neutral-100 hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)] focus:bg-neutral-100 focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)] focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]"
+          class="inline-block cursor-pointer rounded bg-neutral-50 px-6 pt-2.5
+          pb-2 text-xs font-medium uppercase leading-normal text-neutral-800
+          shadow-[0_4px_9px_-4px_#fbfbfb] transition duration-150 ease-in-out
+          hover:bg-neutral-100
+          hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]
+          focus:bg-neutral-100
+          focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]
+          focus:outline-none focus:ring-0 active:bg-neutral-200
+          active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]"
           data-te-target="#addUserModal"
           data-te-toggle="modal"
           data-te-ripple-init
-          data-te-ripple-color="light"
-        >
+          data-te-ripple-color="light">
           <i class="fa-solid fa-plus"></i> Añadir usuario
         </button>
       </div>
@@ -21,8 +28,8 @@
     <table class="min-w-full border-collapse block md:table">
       <thead class="md:block lg:table-header-group lg:block,text-center hidden">
         <tr
-          class="bg-ctm-darck-blue text-white uppercase text-sm leading-normal px-10"
-        >
+          class="bg-ctm-darck-blue text-white uppercase text-sm leading-normal
+          px-10">
           <th class="block md:table-cell p-2">ID</th>
           <th class="block md:table-cell py-2">usuario</th>
           <th class="block md:table-cell py-2">Email</th>
@@ -33,44 +40,39 @@
       <tbody class="block md:table-row-group">
         <tr
           *ngFor="
-            let user of users
-              | paginate : { itemsPerPage: ipp, currentPage: cp }
+          let user of users
+          | paginate : { itemsPerPage: ipp, currentPage: cp }
           "
-          class="bg-white border-b border-b-grey-500 hover:bg-ctm-light-blue md:border-none block md:table-row"
-        >
+          class="bg-white border-b border-b-grey-500 hover:bg-ctm-light-blue
+          md:border-none block md:table-row">
           <td class="p-2 block md:table-cell md:text-center">
-            <span class="inline-block items-start w-1/3 md:hidden font-bold"
-              >ID</span
-            >{{ user.id }}
+            <span class="inline-block items-start w-1/3 md:hidden font-bold">ID</span>{{
+            user.id }}
           </td>
           <td class="p-2 block md:table-cell md:text-center">
-            <span class="inline-block w-1/3 md:hidden font-bold">Usuario</span
-            >{{ user.username }}
+            <span class="inline-block w-1/3 md:hidden font-bold">Usuario</span>{{
+            user.username }}
           </td>
           <td class="p-2 block md:table-cell md:text-center">
-            <span class="inline-block w-1/3 md:hidden font-bold">Email</span
-            >{{ user.email }}
+            <span class="inline-block w-1/3 md:hidden font-bold">Email</span>{{
+            user.email }}
           </td>
           <td class="p-2 block md:table-cell md:text-center">
-            <span class="inline-block w-1/3 md:hidden font-bold"
-              >Contraseña</span
-            >
+            <span class="inline-block w-1/3 md:hidden font-bold">Contraseña</span>
             <span
-              class="bg-green-300 rounded-full text-green-700 px-5 hidden lg:block"
-              >{{ user.password }}</span
-            >
+              class="bg-green-300 rounded-full text-green-700 px-5 hidden
+              lg:block">{{ user.password }}</span>
             <p
-              class="bg-green-300 rounded-full text-green-700 px-5 truncate md:hidden"
-            >
+              class="bg-green-300 rounded-full text-green-700 px-5 truncate
+              md:hidden">
               {{ user.password }}
             </p>
           </td>
           <td class="p-2 block md:table-cell md:text-center">
             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-
             <div
-              class="w-4 mr-2 transform inline-block hover:text-white hover:scale-110"
-            >
+              class="w-4 mr-2 transform inline-block hover:text-white
+              hover:scale-110">
               <a class="cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,558 +89,559 @@
 
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            <div
-              class="w-4 mr-2 transform inline-block hover:text-white cursor-pointer hover:scale-110 md:text-xxl"
-            >
-              <form action="#" method="POST">
-                <span>
-                  <svg
-                    (click)="deleteUser(user.id)"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536
+                    3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                     />
                   </svg>
-                </span>
-              </form>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="flex w-full justify-center bg-white">
-      <div>
-        <pagination-controls (pageChange)="cp = $event"></pagination-controls>
+                </a>
+              </div>
+
+              <div
+                class="w-4 mr-2 transform inline-block hover:text-white
+                cursor-pointer hover:scale-110 md:text-xxl">
+                <form action="#" method="POST">
+                  <span>
+                    <svg
+                      (click)="deleteUser(user.id)"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0
+                        01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1
+                        1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </span>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex w-full justify-center bg-white">
+          <div>
+            <pagination-controls (pageChange)="cp= $event"></pagination-controls>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!--Add user modal-->
-<div
-  data-te-modal-init
-  class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-  id="addUserModal"
-  tabindex="-1"
-  aria-labelledby="addUserModalLabel"
-  aria-hidden="true"
->
-  <div
-    data-te-modal-dialog-ref
-    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
-  >
+    <!--Add user modal-->
     <div
-      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-gray-900 bg-clip-padding text-current shadow-lg outline-none"
-    >
+      data-te-modal-init
+      class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto
+      overflow-x-hidden outline-none"
+      id="addUserModal"
+      tabindex="-1"
+      aria-labelledby="addUserModalLabel"
+      aria-hidden="true">
       <div
-        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-gray-600 border-opacity-100 p-4 dark:border-opacity-50"
-      >
-        <h1
-          class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white"
-        >
-          Crea un usuario
-        </h1>
-        <h5
-          class="text-xl font-medium leading-normal text-neutral-200"
-          id="addUserModalLabel"
-        ></h5>
-        <button
-          type="button"
-          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none text-white focus:outline-none"
-          data-te-modal-dismiss
-          aria-label="Close"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-      <div class="relative flex-auto p-4" data-te-modal-body-ref>
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        data-te-modal-dialog-ref
+        class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0
+        transition-all duration-300 ease-in-out min-[576px]:mx-auto
+        min-[576px]:mt-7 min-[576px]:max-w-[500px]">
+        <div
+          class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)]
+          pointer-events-auto relative flex w-full flex-col rounded-md
+          border-none bg-gray-900 bg-clip-padding text-current shadow-lg
+          outline-none">
           <div
-            *ngIf="add_user_message == 'error'"
-            class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-red-50 text-red-500"
-            role="alert"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 inline w-5 h-5 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-              <span class="font-medium">ERROR!</span> El usuario no se ha podido
-              añadir
-            </div>
-          </div>
-
-          <div
-            *ngIf="add_user_message == 'success'"
-            class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-green-50 text-green-500"
-            role="alert"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 inline w-5 h-5 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-              <span class="font-medium">Correcto</span> El usuario se ha añadido
-              correctamente
-            </div>
-          </div>
-
-          <div
-            *ngIf="add_user_message == 'duplicated'"
-            class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-red-50 text-red-400"
-            role="alert"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 inline w-5 h-5 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-              <span class="font-medium">ERROR!</span> Este correo electrónico ya
-              esta registrado
-            </div>
-          </div>
-          <form
-            [formGroup]="addUserForm"
-            (ngSubmit)="addUser()"
-            class="space-y-4 md:space-y-6"
-          >
-            <div>
-              <label
-                for="name"
-                class="block mb-2 text-sm font-medium text-white"
-                >Username</label
-              >
-              <input
-                type="text"
-                name="username"
-                id="username"
-                formControlName="username"
-                placeholder="Nombre"
-                class="border sm:text-sm rounded-lg focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500"
-                required
-              />
-              <div
-                *ngIf="
-                  addUserForm.get('username')?.invalid &&
-                  addUserForm.get('username')?.errors &&
-                  (addUserForm.get('username')?.dirty ||
-                    addUserForm.get('username')?.touched)
-                "
-              >
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('username')?.hasError('required')"
-                >
-                  El nombre de usuario es obligatorio
-                </small>
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('username')?.hasError('minlength')"
-                >
-                  El nombre de usuario debe tener como minimo 3 caráctereso
-                </small>
-              </div>
-            </div>
-            <div>
-              <label
-                for="email"
-                class="block mb-2 text-sm font-medium text-white"
-                >Correo electrónico</label
-              >
-              <input
-                type="email"
-                name="email"
-                id="email"
-                formControlName="email"
-                class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                placeholder="name@company.com"
-                required=""
-              />
-              <div
-                *ngIf="
-                  addUserForm.get('email')?.invalid &&
-                  addUserForm.get('email')?.errors &&
-                  (addUserForm.get('email')?.dirty ||
-                    addUserForm.get('email')?.touched)
-                "
-              >
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('email')?.hasError('required')"
-                >
-                  El correo electrónico es obligatorio
-                </small>
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('email')?.hasError('email')"
-                >
-                  Este correo electrónico no tiene el formato adecuado
-                </small>
-              </div>
-            </div>
-            <div>
-              <label
-                for="password"
-                class="block mb-2 text-sm font-medium text-white"
-                >Contraseña</label
-              >
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="••••••••"
-                class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                formControlName="password"
-                required=""
-              />
-              <div
-                *ngIf="
-                  addUserForm.get('password')?.invalid &&
-                  addUserForm.get('password')?.errors &&
-                  (addUserForm.get('password')?.dirty ||
-                    addUserForm.get('password')?.touched)
-                "
-              >
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('password')?.hasError('required')"
-                >
-                  La contraseña es obligatorio
-                </small>
-                <small
-                  class="text-red-600"
-                  *ngIf="addUserForm.get('password')?.hasError('minlength')"
-                >
-                  La contraseña debe tener 8 caracteres como minimo
-                </small>
-              </div>
-            </div>
+            class="flex flex-shrink-0 items-center justify-between rounded-t-md
+            border-b-2 border-gray-600 border-opacity-100 p-4
+            dark:border-opacity-50">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight md:text-2xl
+              text-white">
+              Crea un usuario
+            </h1>
+            <h5
+              class="text-xl font-medium leading-normal text-neutral-200"
+              id="addUserModalLabel"></h5>
             <button
-              type="submit"
-              class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
-              data-te-ripple-init
-              data-te-ripple-color="light"
+              type="button"
+              class="box-content rounded-none border-none hover:no-underline
+              hover:opacity-75 focus:opacity-100 focus:shadow-none text-white
+              focus:outline-none"
               data-te-modal-dismiss
-              [disabled]="addUserForm.invalid"
-            >
-              Crear usuario
-            </button>
-          </form>
+              aria-label="Close">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-6 w-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="relative flex-auto p-4" data-te-modal-body-ref>
+              <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div
+                  *ngIf="add_user_message == 'error'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-red-50
+                  text-red-500"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">ERROR!</span> El usuario no se ha
+                    podido
+                    añadir
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="add_user_message == 'success'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-green-50
+                  text-green-500"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">Correcto</span> El usuario se ha
+                    añadido
+                    correctamente
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="add_user_message == 'duplicated'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-red-50
+                  text-red-400"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">ERROR!</span> Este correo
+                    electrónico ya
+                    esta registrado
+                  </div>
+                </div>
+                <form
+                  [formGroup]="addUserForm"
+                  (ngSubmit)="addUser()"
+                  class="space-y-4 md:space-y-6">
+                  <div>
+                    <label
+                      for="name"
+                      class="block mb-2 text-sm font-medium text-white">Username</label>
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      formControlName="username"
+                      placeholder="Nombre"
+                      class="border sm:text-sm rounded-lg
+                      focus:border-primary-600 block w-full p-2.5 bg-gray-700
+                      border-gray-600 placeholder-gray-400 text-white
+                      focus:ring-blue-500"
+                      required
+                      />
+                    <div
+                      *ngIf="
+                      addUserForm.get('username')?.invalid &&
+                      addUserForm.get('username')?.errors &&
+                      (addUserForm.get('username')?.dirty ||
+                      addUserForm.get('username')?.touched)
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('username')?.hasError('required')">
+                        El nombre de usuario es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('username')?.hasError('minlength')">
+                        El nombre de usuario debe tener como minimo 3
+                        caráctereso
+                      </small>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for="email"
+                      class="block mb-2 text-sm font-medium text-white">Correo
+                      electrónico</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      formControlName="email"
+                      class="border sm:text-sm rounded-lg block w-full p-2.5
+                      bg-gray-700 border-gray-600 placeholder-gray-400
+                      text-white focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="name@company.com"
+                      required=""
+                      />
+                    <div
+                      *ngIf="
+                      addUserForm.get('email')?.invalid &&
+                      addUserForm.get('email')?.errors &&
+                      (addUserForm.get('email')?.dirty ||
+                      addUserForm.get('email')?.touched)
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('email')?.hasError('required')">
+                        El correo electrónico es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('email')?.hasError('email')">
+                        Este correo electrónico no tiene el formato adecuado
+                      </small>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for="password"
+                      class="block mb-2 text-sm font-medium text-white">Contraseña</label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="••••••••"
+                      class="border sm:text-sm rounded-lg block w-full p-2.5
+                      bg-gray-700 border-gray-600 placeholder-gray-400
+                      text-white focus:ring-blue-500 focus:border-blue-500"
+                      formControlName="password"
+                      required=""
+                      />
+                    <div
+                      *ngIf="
+                      addUserForm.get('password')?.invalid &&
+                      addUserForm.get('password')?.errors &&
+                      (addUserForm.get('password')?.dirty ||
+                      addUserForm.get('password')?.touched)
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('password')?.hasError('required')">
+                        La contraseña es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="addUserForm.get('password')?.hasError('minlength')">
+                        La contraseña debe tener 8 caracteres como minimo
+                      </small>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full text-white focus:ring-4 focus:outline-none
+                    font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                    bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    data-te-modal-dismiss
+                    [disabled]="addUserForm.invalid">
+                    Crear usuario
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!--Update user modal-->
-<div
-  data-te-modal-init
-  class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-  id="updateUserModal"
-  tabindex="-1"
-  aria-labelledby="Modal"
-  aria-hidden="true"
->
-  <div
-    data-te-modal-dialog-ref
-    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
-  >
-    <div
-      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-gray-900 bg-clip-padding text-current shadow-lg outline-none"
-    >
+      <!--Update user modal-->
       <div
-        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-gray-600 border-opacity-100 p-4 dark:border-opacity-50"
-      >
-        <h1
-          class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white"
-        >
-          Editar Usuario
-        </h1>
-        <h5
-          class="text-xl font-medium leading-normal text-neutral-200"
-          id="updateUserModalLabel"
-        ></h5>
-        <button
-          type="button"
-          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none text-white focus:outline-none"
-          data-te-modal-dismiss
-          aria-label="Close"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        data-te-modal-init
+        class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto
+        overflow-x-hidden outline-none"
+        id="updateUserModal"
+        tabindex="-1"
+        aria-labelledby="Modal"
+        aria-hidden="true">
+        <div
+          data-te-modal-dialog-ref
+          class="pointer-events-none relative w-auto translate-y-[-50px]
+          opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto
+          min-[576px]:mt-7 min-[576px]:max-w-[500px]">
+          <div
+            class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)]
+            pointer-events-auto relative flex w-full flex-col rounded-md
+            border-none bg-gray-900 bg-clip-padding text-current shadow-lg
+            outline-none">
+            <div
+              class="flex flex-shrink-0 items-center justify-between
+              rounded-t-md border-b-2 border-gray-600 border-opacity-100 p-4
+              dark:border-opacity-50">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight
+                md:text-2xl text-white">
+                Editar Usuario
+              </h1>
+              <h5
+                class="text-xl font-medium leading-normal text-neutral-200"
+                id="updateUserModalLabel"></h5>
+              <button
+                type="button"
+                class="box-content rounded-none border-none hover:no-underline
+                hover:opacity-75 focus:opacity-100 focus:shadow-none text-white
+                focus:outline-none"
+                data-te-modal-dismiss
+                aria-label="Close">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="h-6 w-6">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
 
-        <div
-          *ngIf="update_user_message == 'error'"
-          class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800 text-red-400"
-          role="alert"
-        >
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 inline w-5 h-5 mr-3"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            <span class="font-medium">ERROR!</span> No se ha podido modificar el
-            usuario.
-          </div>
-        </div>
-  
-        <div
-          *ngIf="update_user_message == 'duplicated'"
-          class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800 text-red-400"
-          role="alert"
-        >
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 inline w-5 h-5 mr-3"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            <span class="font-medium">ERROR!</span> Este correo electrónico ya
-            esta registrado.
-          </div>
-        </div>
-  
-        <div
-          *ngIf="update_user_message == 'success'"
-          class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800 text-green-400"
-          role="alert"
-        >
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 inline w-5 h-5 mr-3"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            <span class="font-medium">Correcto</span> El usuario se ha añadido
-            correctamente
-          </div>
-        </div>
-  
-        <form
-          [formGroup]="editUserForm"
-          (ngSubmit)="updateUser()"
-          class="space-y-4 md:space-y-6"
-        >
-          <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-white"
-              >Username</label
-            >
-            <input
-              type="text"
-              name="username"
-              id="username"
-              formControlName="username"
-              placeholder="Nombre"
-              class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-              aria-label="disabled input"
-            />
-            <div
-              *ngIf="
-                editUserForm.get('username')?.invalid &&
-                editUserForm.get('username')?.errors &&
-                editUserForm.get('username')?.dirty
-              "
-            >
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('username')?.hasError('required')"
-              >
-                El nombre de usuario es obligatorio
-              </small>
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('username')?.hasError('minlength')"
-              >
-                El nombre de usuario debe tener como minimo 3 caráctereso
-              </small>
+                <div
+                  *ngIf="update_user_message == 'error'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800
+                  text-red-400"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">ERROR!</span> No se ha podido
+                    modificar el
+                    usuario.
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="update_user_message == 'duplicated'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800
+                  text-red-400"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">ERROR!</span> Este correo
+                    electrónico ya
+                    esta registrado.
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="update_user_message == 'success'"
+                  class="flex p-4 mt-4 mb-4 text-sm rounded-lg bg-gray-800
+                  text-green-400"
+                  role="alert">
+                  <svg
+                    aria-hidden="true"
+                    class="flex-shrink-0 inline w-5 h-5 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1
+                      1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                      100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">Correcto</span> El usuario se ha
+                    añadido
+                    correctamente
+                  </div>
+                </div>
+
+                <form
+                  [formGroup]="editUserForm"
+                  (ngSubmit)="updateUser()"
+                  class="space-y-4 md:space-y-6">
+                  <div>
+                    <label for="name" class="block mb-2 text-sm font-medium
+                      text-white">Username</label>
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      formControlName="username"
+                      placeholder="Nombre"
+                      class="border sm:text-sm rounded-lg block w-full p-2.5
+                      bg-gray-700 border-gray-600 placeholder-gray-400
+                      text-white focus:ring-blue-500 focus:border-blue-500"
+                      aria-label="disabled input"
+                      />
+                    <div
+                      *ngIf="
+                      editUserForm.get('username')?.invalid &&
+                      editUserForm.get('username')?.errors &&
+                      editUserForm.get('username')?.dirty
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('username')?.hasError('required')">
+                        El nombre de usuario es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('username')?.hasError('minlength')">
+                        El nombre de usuario debe tener como minimo 3
+                        caráctereso
+                      </small>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="email" class="block mb-2 text-sm font-medium
+                      text-white">Correo electrónico</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      formControlName="email"
+                      class="border sm:text-sm rounded-lg block w-full p-2.5
+                      bg-gray-700 border-gray-600 placeholder-gray-400
+                      text-white focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="name@company.com"
+                      required=""
+                      />
+                    <div
+                      *ngIf="
+                      editUserForm.get('email')?.invalid &&
+                      editUserForm.get('email')?.errors &&
+                      editUserForm.get('email')?.dirty
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('email')?.hasError('required')">
+                        El correo electrónico es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('email')?.hasError('email')">
+                        Este correo electrónico no tiene el formato adecuado
+                      </small>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for="password"
+                      class="block mb-2 text-sm font-medium text-white">Contraseña</label>
+                    <input
+                      type="text"
+                      name="password"
+                      id="password"
+                      placeholder="••••••••"
+                      class="border sm:text-sm rounded-lg block w-full p-2.5
+                      bg-gray-700 border-gray-600 placeholder-gray-400
+                      text-white focus:ring-blue-500 focus:border-blue-500"
+                      formControlName="password"
+                      required=""
+                      />
+                    <div
+                      *ngIf="
+                      editUserForm.get('password')?.invalid &&
+                      editUserForm.get('password')?.errors &&
+                      editUserForm.get('password')?.dirty
+                      ">
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('password')?.hasError('required')">
+                        La contraseña es obligatorio
+                      </small>
+                      <small
+                        class="text-red-600"
+                        *ngIf="editUserForm.get('password')?.hasError('minlength')">
+                        La contraseña debe tener 8 caracteres como minimo
+                      </small>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full text-white focus:ring-4 focus:outline-none
+                    font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                    bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+                    [disabled]="editUserForm.invalid">
+                    Actualizar usuario
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-          <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-white"
-              >Correo electrónico</label
-            >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              formControlName="email"
-              class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-              placeholder="name@company.com"
-              required=""
-            />
-            <div
-              *ngIf="
-                editUserForm.get('email')?.invalid &&
-                editUserForm.get('email')?.errors &&
-                editUserForm.get('email')?.dirty
-              "
-            >
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('email')?.hasError('required')"
-              >
-                El correo electrónico es obligatorio
-              </small>
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('email')?.hasError('email')"
-              >
-                Este correo electrónico no tiene el formato adecuado
-              </small>
-            </div>
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-white"
-              >Contraseña</label
-            >
-            <input
-              type="text"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-              formControlName="password"
-              required=""
-            />
-            <div
-              *ngIf="
-                editUserForm.get('password')?.invalid &&
-                editUserForm.get('password')?.errors &&
-                editUserForm.get('password')?.dirty
-              "
-            >
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('password')?.hasError('required')"
-              >
-                La contraseña es obligatorio
-              </small>
-              <small
-                class="text-red-600"
-                *ngIf="editUserForm.get('password')?.hasError('minlength')"
-              >
-                La contraseña debe tener 8 caracteres como minimo
-              </small>
-            </div>
-          </div>
-          <button
-            type="submit"
-            class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
-            [disabled]="editUserForm.invalid"
-          >
-            Actualizar usuario
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--END-->
+        </div>
+        <!--END-->

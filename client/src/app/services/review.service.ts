@@ -20,18 +20,14 @@ export class ReviewService {
   }
 
   createReview(review: Review){
-    console.log("llega al create");
-    console.log(review);
-    return this.http.post('http://localhost:4000/reviews', review);
+    return this.http.post('http://localhost:4000/reviews', review, { responseType: 'json' });
   }
 
   updateReview(reviewId: number, review: Review){
-    return this.http.put('http://localhost:4000/reviews/'+reviewId,review);
+    return this.http.put('http://localhost:4000/reviews/'+reviewId,review, { responseType: 'json' });
   }
 
   deleteReview(reviewId: number){
-    console.log("llega al delete");
-    console.log(reviewId);
-    return this.http.delete('http://localhost:4000/reviews/'+reviewId);
+    return this.http.delete('http://localhost:4000/reviews/'+reviewId, { responseType: 'json' });
   }
 }

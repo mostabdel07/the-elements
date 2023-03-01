@@ -50,11 +50,10 @@ export class FeaturesComponent implements OnInit{
     this.cp = 1;
     this.showAdd=false;
     this.showGet=false;
-    //this.reviews= this.reviewService.getReviews();
-    this.reviewService.getReviews().subscribe(data => {
-      this.reviews = data;
-      console.log('ts'+this.reviews); 
-    })    // Check the obserbable status
+
+    this.getReviews();
+
+   // Check the obserbable status
     this.authService.isLoggedIn.subscribe((status) => {
       this.isLoggedIn = status;
     });
@@ -62,30 +61,29 @@ export class FeaturesComponent implements OnInit{
     this.isLoggedIn = this.storageService.isLoggedIn();
   }
 
-  showAddReview(){
-    this.showAdd=true;
-    
-  }
+  getReviews(){
+    //this.reviews= this.reviewService.getReviews();
+    this.reviewService.getReviews().subscribe(data => {
+    this.reviews = data;
+   })    
+ }
 
   getReview(review: any){
     this.showGet=true;
     this.reviewId=review.id;
-    console.log(this.reviewId);
     this.reviewService.getReview(this.reviewId).subscribe(data => {
       this.reviews = data;
-      console.log('ts'+this.reviews)})
+  })
 }
 
   modifyReview(review: any){
       this.reviewId=review.id;
-      console.log(this.reviewId);
       this.reviewService.getReview(this.reviewId).subscribe(data => {
         this.reviewToModify = data;
     })
   }
 
   updateReview(review:any){
-    console.log(review);
     this.reviewId=review.id;
     this.reviewUsername=review.username;
     this.reviewProfileUrl=review.profileUrl
@@ -94,24 +92,28 @@ export class FeaturesComponent implements OnInit{
       this.reviewProfileUrl,
       this.updateReviewForm.value.comment!
     );
-    console.log(this.reviewToUpdate);
     this.reviewService.updateReview(this.reviewId,this.reviewToUpdate).subscribe();
+    this.ngOnInit();
+  }
+
+  showAddReview(){
+    this.showAdd=true;
   }
 
   addReview(){
-    console.log("añadir entra");
     this.reviewToAdd=new Review(
       this.addReviewForm.value.username!,
       "anonymous.png",
       this.addReviewForm.value.comment!
     );
-    console.log(this.reviewToAdd);
     this.reviewService.createReview(this.reviewToAdd).subscribe();
+    this.ngOnInit();
 }
 
   deleteReview(review: any){
   this.reviewId=review.id;
   this.reviewService.deleteReview(this.reviewId).subscribe();
+  this.ngOnInit();
 }
 }
 
