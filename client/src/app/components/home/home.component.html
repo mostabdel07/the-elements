@@ -131,7 +131,7 @@
   <!-- Modal -->
   <div
     data-te-modal-init
-    class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+    class="fixed top-0 left-0 z-[1055] hidden h- w-full overflow-y-auto overflow-x-hidden outline-none"
     id="exampleModalFullscreen"
     tabindex="-1"
     aria-labelledby="exampleModalFullscreenLabel"
@@ -142,20 +142,14 @@
       class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[0px]:m-0 min-[0px]:h-full min-[0px]:max-w-none"
     >
       <div
-        class="pointer-events-auto relative flex w-full flex-col rounded-md bg-ctm-purple bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600 min-[0px]:h-full min-[0px]:rounded-none min-[0px]:border-0"
+        class="pointer-events-auto relative flex w-full flex-col rounded-md bg-ctm-purple bg-clip-padding text-current shadow-lg outline-none min-[0px]:h-full min-[0px]:rounded-none min-[0px]:border-0"
       >
         <div
           class="flex flex-shrink-0 items-center justify-between rounded-t-md min-[0px]:rounded-none"
         >
-          <h5
-            class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-            id="exampleModalFullscreenLabel"
-          >
-            Gameplay
-          </h5>
           <button
             type="button"
-            class="box-content rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            class="box-content rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none relative focus:outline-none"
             data-te-modal-dismiss
             aria-label="Close"
           >
@@ -176,13 +170,13 @@
           </button>
         </div>
         <div
-          class="relative p-4 min-w-full max-w-full min-h-full max-h-full bg-transparent"
+          class="relative p-4 h-screen bg-transparent"
         >
           <video
             autoplay
             muted
             loop
-            class="embed-responsive-item absolute top-0 right-0 bottom-0 left-0 w-full h-full z-50"
+            class="embed-responsive-item absolute top-0 right-0 bottom-0 left-0 w-4/5 mx-auto z-50"
           >
             <source src="./assets/videos/gameplay.mp4" type="video/mp4" />
             Your browser does not support the video tag.
