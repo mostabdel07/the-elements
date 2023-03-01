@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from 'src/app/models/review/review';
 import { ReviewService } from 'src/app/services/review.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-features',
@@ -18,11 +20,12 @@ export class FeaturesComponent implements OnInit{
   reviewId!:number;
   reviewUsername!:string;
   reviewProfileUrl!:string;
-
+  isLoggedIn = false;
   ipp!: number;
   cp!: number;
 
-  constructor(private reviewService:ReviewService){}
+
+  constructor(private reviewService:ReviewService, private authService: AuthService, private storageService: StorageService){}
 
   addReviewForm=new FormGroup({
  
@@ -43,15 +46,20 @@ export class FeaturesComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.showAdd=false;
-    this.showGet=false;
     this.ipp = 4;
     this.cp = 1;
+    this.showAdd=false;
+    this.showGet=false;
     //this.reviews= this.reviewService.getReviews();
     this.reviewService.getReviews().subscribe(data => {
       this.reviews = data;
       console.log('ts'+this.reviews); 
-    })
+    })    // Check the obserbable status
+    this.authService.isLoggedIn.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+    // Check if user is in localStorage
+    this.isLoggedIn = this.storageService.isLoggedIn();
   }
 
   showAddReview(){
@@ -87,23 +95,23 @@ export class FeaturesComponent implements OnInit{
       this.updateReviewForm.value.comment!
     );
     console.log(this.reviewToUpdate);
-    this.reviewService.updateReview(this.reviewId,this.reviewToUpdate)
+    this.reviewService.updateReview(this.reviewId,this.reviewToUpdate).subscribe();
   }
 
   addReview(){
     console.log("añadir entra");
     this.reviewToAdd=new Review(
       this.addReviewForm.value.username!,
-      "img",
+      "anonymous.png",
       this.addReviewForm.value.comment!
     );
     console.log(this.reviewToAdd);
-    this.reviewService.createReview(this.reviewToAdd)
+    this.reviewService.createReview(this.reviewToAdd).subscribe();
 }
 
   deleteReview(review: any){
   this.reviewId=review.id;
-  this.reviewService.deleteReview(this.reviewId);
+  this.reviewService.deleteReview(this.reviewId).subscribe();
 }
 }
 

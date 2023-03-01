@@ -22,14 +22,11 @@ export class ReviewService {
   createReview(review: Review){
     console.log("llega al create");
     console.log(review);
-    this.http.post('http://localhost:4000/reviews', review);
+    return this.http.post('http://localhost:4000/reviews', review);
   }
 
   updateReview(reviewId: number, review: Review){
-    console.log("llega al update");
-    console.log(reviewId);
-    console.log(review);
-    this.http.put('http://localhost:4000/reviews/'+reviewId,review);
+    return this.http.put('http://localhost:4000/reviews/'+reviewId,review);
   }
 
   deleteReview(reviewId: number){
