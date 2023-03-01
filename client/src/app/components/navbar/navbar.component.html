@@ -11,19 +11,19 @@
       <ng-template #logout>
         <a
           href="/login"
-          class="relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-full shadow-2xl group"
+          class="relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-ctm-darck-blue rounded-full shadow-2xl group"
         >
           <span
-            class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-red-500 rounded-full blur-md ease"
+            class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-ctm-red rounded-full blur-md ease"
           ></span>
           <span
             class="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease"
           >
             <span
-              class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-purple-500 rounded-full blur-md"
+              class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-ctm-light-blue rounded-full blur-md"
             ></span>
             <span
-              class="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"
+              class="absolute bottom-0 right-0 w-24 h-24 -mr-10 text-ctm-yellow rounded-full blur-md"
             ></span>
           </span>
           <span class="relative text-white"
@@ -109,7 +109,7 @@
         <li>
           <a
             href="/"
-            class="block py-2 pl-3 pr-4 text-ctm-light bg-blue-700 rounded md:bg-transparent md:text-ctm-light md:p-0"
+            class="block py-2 pl-3 pr-4 text-ctm-light rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-ctm-red md:p-0 md:dark:hover:text-white hover:text-white border-gray-700"
             aria-current="page"
             >Inicio</a
           >
@@ -118,7 +118,7 @@
           <a
             href="/features"
             class="block py-2 pl-3 pr-4 text-ctm-light rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-ctm-red md:p-0 md:dark:hover:text-white hover:text-white border-gray-700"
-            >Features</a
+            >Características</a
           >
         </li>
         <li>
@@ -139,14 +139,14 @@
           <a
             href="/contact"
             class="block py-2 pl-3 pr-4 text-ctm-light rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-ctm-red md:p-0 md:dark:hover:text-white hover:text-white border-gray-700"
-            >Contacto</a
+            >Contáctanos</a
           >
         </li>
         <li *ngIf="isLoggedIn">
           <a
             href="/users"
             class="block py-2 pl-3 pr-4 text-ctm-light rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-ctm-red md:p-0 md:dark:hover:text-white hover:text-white border-gray-700"
-            >Users</a
+            >Gestión Usuarios</a
           >
         </li>
       </ul>
