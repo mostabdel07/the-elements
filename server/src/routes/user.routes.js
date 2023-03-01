@@ -9,7 +9,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/users", userController.getUsers);
-router.get("/users/:id", userController.getUser);
+// router.get("/users/:id", userController.getUser);
+router.get("/users/:username", userController.getUserByUsername);
 router.post("/users", userController.addUser);
 router.put("/users/:id", userController.updateUser);
 router.delete("/users/:id", userController.deleteUser);

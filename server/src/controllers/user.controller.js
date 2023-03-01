@@ -28,12 +28,28 @@ const getUser = async (req, res) => {
   }
 };
 
+// Get one user filtered by name
+const getUserByUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const connection = await getConnection();
+    const result = await connection.query(
+      "SELECT * FROM users WHERE name = ?",
+      username
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 // Add user to database
 const addUser = async (req, res) => {
   try {
-    const { name,email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (name === undefined || email ===undefined || password === undefined) {
+    if (name === undefined || email === undefined || password === undefined) {
       res.status(400).json({ message: "Bad Request, Please fill all fields." });
     }
 
@@ -55,7 +71,12 @@ const updateUser = async (req, res) => {
     const { id } = req.params;
     const { name, email, password } = req.body;
 
-    if (id === undefined || name === undefined || email ===undefined || password === undefined) {
+    if (
+      id === undefined ||
+      name === undefined ||
+      email === undefined ||
+      password === undefined
+    ) {
       res.status(400).json({ message: "Bad Request, Please fill all fields." });
     }
 
@@ -66,7 +87,6 @@ const updateUser = async (req, res) => {
     );
     res.json(result);
   } catch (error) {
-    
     res.status(500);
     res.send(error);
   }
@@ -78,9 +98,7 @@ const deleteUser = async (req, res) => {
     console.log(req.params);
     const { id } = req.params;
     const connection = await getConnection();
-    const result = await connection.query(
-      `DELETE FROM users WHERE id = ${id}`
-    );
+    const result = await connection.query(`DELETE FROM users WHERE id = ${id}`);
     console.log(result);
     res.json({ message: "User deleted" });
   } catch (error) {
@@ -93,6 +111,7 @@ const deleteUser = async (req, res) => {
 export const methods = {
   getUsers,
   getUser,
+  getUserByUsername,
   addUser,
   updateUser,
   deleteUser,

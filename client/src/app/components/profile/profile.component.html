@@ -5,15 +5,15 @@
         class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0"
       >
         <div>
-          <p class="font-bold text-gray-700 text-xl">22</p>
+          <p class="font-bold text-gray-700 text-xl">0</p>
           <p class="text-gray-400">Logros</p>
         </div>
         <div>
-          <p class="font-bold text-gray-700 text-xl">40221</p>
+          <p class="font-bold text-gray-700 text-xl">0</p>
           <p class="text-gray-400">Puntos</p>
         </div>
         <div>
-          <p class="font-bold text-gray-700 text-xl">89</p>
+          <p class="font-bold text-gray-700 text-xl">0</p>
           <p class="text-gray-400">Partidas</p>
         </div>
       </div>
@@ -37,11 +37,11 @@
     </div>
     <div class="mt-20 text-center border-b pb-12">
       <h1 class="text-4xl font-medium text-gray-700">
-        Usuario, <span class="font-light text-gray-500">27</span>
+        {{ userData.username }}
+        <span class="font-light text-gray-500">#ID: {{ userData.id }}</span>
       </h1>
-      <p class="font-light text-gray-600 mt-3">Admin</p>
       <p class="mt-8 text-gray-500">WebDeveloper</p>
-      <p class="mt-2 text-gray-500">ejemplo@email.com</p>
+      <p class="mt-2 text-gray-500">{{ userData.email }}</p>
     </div>
     <div class="mt-12 flex flex-col justify-center">
       <p class="text-center pb-5">Descripción</p>

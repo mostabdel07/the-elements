@@ -60,4 +60,11 @@ export class UserdbService {
       responseType: 'json',
     });
   }
+
+  getUserByUsername(username: any): Observable<any>  {
+    return this.http.get(` http://localhost:4000/users/${username}`, {
+      params: username,
+      responseType: 'json',
+    });
+  }
 }
