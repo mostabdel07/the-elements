@@ -12,22 +12,22 @@ export class ReviewService {
 
 
   getReviews():Observable<any>{
-    return this.http.get('http://localhost:4000/reviews', { responseType: 'json' });
+    return this.http.get('http://localhost:8000/api/reviews', { responseType: 'json' });
   }
 
   getReview(reviewId: number):Observable<any>{
-    return this.http.get('http://localhost:4000/reviews/'+reviewId, { responseType: 'json' });
+    return this.http.get('http://localhost:8000/api/reviews/'+reviewId, { responseType: 'json' });
   }
 
   createReview(review: Review){
-    return this.http.post('http://localhost:4000/reviews', review, { responseType: 'json' });
+    return this.http.post('http://localhost:8000/api/reviews', review, { responseType: 'json' });
   }
 
   updateReview(reviewId: number, review: Review){
-    return this.http.put('http://localhost:4000/reviews/'+reviewId,review, { responseType: 'json' });
+    return this.http.put('http://localhost:8000/api/reviews/'+reviewId,review, { responseType: 'json' });
   }
 
   deleteReview(reviewId: number){
-    return this.http.delete('http://localhost:4000/reviews/'+reviewId, { responseType: 'json' });
+    return this.http.delete('http://localhost:8000/api/reviews/'+reviewId, { responseType: 'json' });
   }
 }

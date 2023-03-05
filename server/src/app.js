@@ -7,6 +7,8 @@ import reviewRoutes from "./routes/review.routes";
 
 const app = express();
 
+app.use(express.static(process.cwd() + "/public/"));
+
 //CORS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +18,8 @@ app.use(function (req, res, next) {
   res.header("Allow", "POST, GET, PUT, DELETE, OPTIONS");
   next();
 });
+
+
 
 // Settings
 app.set("port", 4000);
@@ -28,5 +32,11 @@ app.use(express.json()); // Server understand json format
 app.use(userRoutes);
 app.use(teamRoutes);
 app.use(reviewRoutes);
+
+app.get("/", (req, res) => {
+	res.sendFile(
+		process.cwd() + "/public/index.html"
+	);
+});
 
 export default app;

@@ -20,7 +20,7 @@ export class UserdbService {
       password: password,
     };
 
-    return this.http.post('http://localhost:4000/users', body, {
+    return this.http.post('http://localhost:8000/api/users', body, {
       responseType: 'json',
     });
   }
@@ -37,32 +37,32 @@ export class UserdbService {
       password: password,
     };
 
-    return this.http.put(`http://localhost:4000/users/${id}`, body, {
+    return this.http.put(`http://localhost:8000/api/users/${id}`, body, {
       responseType: 'json',
     });
   }
 
   getUsers(): Observable<any> {
-    return this.http.get('http://localhost:4000/users', {
+    return this.http.get('http://localhost:8000/api/users', {
       responseType: 'json',
     });
   }
 
   deleteUser(user_id: any): Observable<any> {
-    let url = `http://localhost:4000/users/${user_id}`;
+    let url = `http://localhost:8000/api/users/${user_id}`;
 
     return this.http.delete<User>(url, { responseType: 'json' });
   }
 
   getUser(id: any) {
-    return this.http.get(` http://localhost:4000/users/${id}`, {
+    return this.http.get(` http://localhost:8000/api/users/${id}`, {
       params: id,
       responseType: 'json',
     });
   }
 
   getUserByUsername(username: any): Observable<any>  {
-    return this.http.get(` http://localhost:4000/users/${username}`, {
+    return this.http.get(` http://localhost:8000/api/users/${username}`, {
       params: username,
       responseType: 'json',
     });

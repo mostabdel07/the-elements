@@ -13,11 +13,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
-    const user: object = { username: username, password: password };
+  login(email: string, password: string): Observable<any> {
+    const user: object = {email: email, password: password };
     console.log(user);
 
-    return this.http.post('http://localhost:4000/login', user, {
+    return this.http.post('http://localhost:8000/api/login', user, {
       responseType: 'json',
     }).pipe(
       map(res => {
