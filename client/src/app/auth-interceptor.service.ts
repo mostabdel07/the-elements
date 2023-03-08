@@ -32,14 +32,15 @@ export class AuthInterceptorService implements HttpInterceptor {
       });
     }
 
-    return next.handle(request).pipe(//* pipe redirect user to login page when token expires
-      catchError((err:HttpResponse<any>) =>{
-        if (err.status === 401) {
-          this.router.navigateByUrl('/login');
-        }
-        return throwError(() => err)
-      })
-    );
+    return next.handle(request);
+    // .pipe(//* pipe redirect user to login page when token expires
+    //   catchError((err:HttpResponse<any>) =>{
+    //     if (err.status === 401) {
+    //       this.router.navigateByUrl('/login');
+    //     }
+    //     return throwError(() => err)
+    //   })
+    // );
 
     //TODO add Interceptors to providers in app.modules
   }

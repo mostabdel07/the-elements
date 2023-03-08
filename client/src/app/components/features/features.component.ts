@@ -45,7 +45,7 @@ export class FeaturesComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.ipp = 4;
+    this.ipp = 3;
     this.cp = 1;
     this.showAdd=false;
     this.showGet=false;
@@ -64,16 +64,10 @@ export class FeaturesComponent implements OnInit{
     //this.reviews= this.reviewService.getReviews();
     this.reviewService.getReviews().subscribe(data => {
     this.reviews = data;
+    console.log(this.reviews);
    })    
  }
 
-  getReview(review: any){
-    this.showGet=true;
-    this.reviewId=review.id;
-    this.reviewService.getReview(this.reviewId).subscribe(data => {
-      this.reviews = data;
-  })
-}
 
   modifyReview(review: any){
       this.reviewId=review.id;
@@ -89,7 +83,8 @@ export class FeaturesComponent implements OnInit{
     this.reviewToUpdate=new Review(
       this.reviewUsername,
       this.reviewProfileUrl,
-      this.updateReviewForm.value.comment!
+      this.updateReviewForm.value.comment!,
+      review.rating
     );
     this.reviewService.updateReview(this.reviewId,this.reviewToUpdate).subscribe();
     this.ngOnInit();
@@ -103,7 +98,8 @@ export class FeaturesComponent implements OnInit{
     this.reviewToAdd=new Review(
       this.addReviewForm.value.username!,
       "anonymous.png",
-      this.addReviewForm.value.comment!
+      this.addReviewForm.value.comment!,
+      4 //Rating default
     );
     this.reviewService.createReview(this.reviewToAdd).subscribe();
     this.ngOnInit();
@@ -113,6 +109,10 @@ export class FeaturesComponent implements OnInit{
   this.reviewId=review.id;
   this.reviewService.deleteReview(this.reviewId).subscribe();
   this.ngOnInit();
+}
+
+ratingCounter(i: number) {
+  return new Array(i);
 }
 }
 
