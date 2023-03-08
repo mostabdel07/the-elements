@@ -20,7 +20,7 @@ export class UserdbService {
       password: password,
     };
 
-    return this.http.post('http://localhost:8000/api/users', body, {
+    return this.http.post('http://localhost:8000/api/users/ ', body, {
       responseType: 'json',
     });
   }
