@@ -2,3 +2,7 @@
   font-family: 'Poppins', sans-serif;
   background-color: var(--dark-blue);
 }
+
+#reviews{
+ background-color: var(--clr-dark-bg);
+}
