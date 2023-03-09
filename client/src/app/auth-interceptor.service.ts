@@ -19,12 +19,12 @@ export class AuthInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
     //1. Get token from localStorage
     const token:string = this.storage.getUser();
-    let token2 = 'abc'
     let request = req;
+
     //2.If token req.clone sets Headers to requests
-    console.log("TOKEN DE INTERCEPTOR: " + token);
     if (token) {
       request = req.clone({
         setHeaders: {
@@ -33,15 +33,14 @@ export class AuthInterceptorService implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
-    // .pipe(//* pipe redirect user to login page when token expires
-    //   catchError((err:HttpResponse<any>) =>{
-    //     if (err.status === 401) {
-    //       this.router.navigateByUrl('/login');
-    //     }
-    //     return throwError(() => err)
-    //   })
-    // );
+    return next.handle(request).pipe(//* pipe redirect user to login page when token expires
+      catchError((err:HttpResponse<any>) =>{
+        if (err.status === 401) {
+          this.router.navigateByUrl('/login');
+        }
+        return throwError(() => err)
+      })
+    );
 
     //TODO add Interceptors to providers in app.modules
   }

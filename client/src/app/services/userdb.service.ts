@@ -54,17 +54,10 @@ export class UserdbService {
     return this.http.delete<User>(url, { responseType: 'json' });
   }
 
-  getUser(id: any) {
-    return this.http.get(` http://localhost:8000/api/users/${id}`, {
-      params: id,
+  getUser() {
+    return this.http.get(` http://localhost:8000/api/users/id`, {
       responseType: 'json',
     });
   }
 
-  getUserByUsername(username: any): Observable<any>  {
-    return this.http.get(` http://localhost:8000/api/users/${username}`, {
-      params: username,
-      responseType: 'json',
-    });
-  }
 }

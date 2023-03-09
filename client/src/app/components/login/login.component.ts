@@ -31,9 +31,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
-    private userCookie: CookieService,
-    private router: Router,
-    private userService: UserdbService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,25 +46,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe((res) => {
       if (res !== null) {
-       
-        this.userService.getUserByUsername(username).subscribe( {
-        next: (data) => {
-    
-
-         let userData = {
-          id: data[0].id,
-          username: data[0].name,
-          email: data[0].email
-         }
-
-        //Save cookie
-        this.userCookie.set('userCookie', JSON.stringify(userData));
-          
-        },
-        error: (err) => {
-          console.log('No se ha podido encontrar el usuario');
-        },
-       });
         console.log(res); //devuelve token
         console.log('respuesta bd');
         // Save on localStorage

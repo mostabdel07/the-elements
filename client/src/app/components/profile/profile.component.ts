@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { UserdbService } from 'src/app/services/userdb.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,18 +7,24 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  userData!:{
-    id: '',
-    username: '',
-    email: ''
-  };
+  userData!:any;
   
-  constructor(private userCookie: CookieService,) {}
+  constructor(    private userService: UserdbService) {}
 
   ngOnInit(): void {
-    //Recoge la informacion del usuario logeado actual de la cookie
-    this.userData = JSON.parse(this.userCookie.get('userCookie'));
-    console.log(this.userData);
+          // Recoger datos necesarios para perfil
+          this.userService.getUser().subscribe( {
+            next: (data) => {
+              console.log(data);
+        
+             this.userData = data;
+    
+              
+            },
+            error: (err) => {
+              console.log('No se ha podido encontrar el usuario');
+            },
+           });
   }
 
 
