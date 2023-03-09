@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserdbService } from 'src/app/services/userdb.service';
-import { User } from 'src/app/models/user/user';
+
 
 @Component({
   selector: 'app-features',
@@ -14,8 +14,6 @@ import { User } from 'src/app/models/user/user';
 })
 export class FeaturesComponent implements OnInit{
   reviews!:Review[];
-  showAdd!:boolean;
-  showGet!:boolean;
   reviewToAdd!:Review;
   reviewToUpdate!:Review;
   reviewToModify!:Review[];
@@ -26,34 +24,24 @@ export class FeaturesComponent implements OnInit{
   ipp!: number;
   cp!: number;
   data_to_add!: any;
-  //user_to_add!:User;
 
 
   constructor(private reviewService:ReviewService, private authService: AuthService, private storageService: StorageService, private userService: UserdbService){}
 
   addReviewForm=new FormGroup({
- 
-    username:new FormControl(``,[
-      Validators.required,
-    ]),
 
     comment: new FormControl('',[
-        Validators.required])
-  })
-
-  updateReviewForm=new FormGroup({
-
-    comment: new FormControl('',[
-        Validators.required])
+        Validators.required]),
+    
+    rating: new FormControl(),
   })
 
 
   ngOnInit(): void {
     this.ipp = 3;
     this.cp = 1;
-    this.showAdd=false;
-    this.showGet=false;
     this.getReviews();
+    
     
 
    // Check the obserbable status
@@ -68,21 +56,19 @@ export class FeaturesComponent implements OnInit{
     //this.reviews= this.reviewService.getReviews();
     this.reviewService.getReviews().subscribe(data => {
     this.reviews = data;
-    console.log(this.reviews);
    })    
  }
 
-  // getUser(){
-  //   this.userService.getUser().subscribe( {
-  //     next: (data) => {
-  //       this.data_to_add=data;
-  //       //this.user_to_add= new User(this.data_to_add.id,this.data_to_add.name,this.data_to_add.password,this.data_to_add.email)
-  //     },
-  //     error: (err) => {
-  //       console.log('No se ha podido encontrar el usuario');
-  //     },
-  //    });
-  // }
+  getUser(){
+    this.userService.getUser().subscribe( {
+      next: (data) => {
+        this.data_to_add=data;
+        //this.user_to_add= new User(this.data_to_add.id,this.data_to_add.name,this.data_to_add.password,this.data_to_add.email)
+      },
+      error: (err) => {
+      },
+     });
+  }
 
 
   modifyReview(review: any){
@@ -92,31 +78,12 @@ export class FeaturesComponent implements OnInit{
     })
   }
 
-  updateReview(review:any){
-    this.reviewId=review.id;
-    this.reviewUsername=review.username;
-    this.reviewProfileUrl=review.profileUrl
-    this.reviewToUpdate=new Review(
-      this.reviewUsername,
-      this.reviewProfileUrl,
-      this.updateReviewForm.value.comment!,
-      review.rating
-    );
-    this.reviewService.updateReview(this.reviewId,this.reviewToUpdate).subscribe();
-    this.ngOnInit();
-  }
-
-  showAddReview(){
-    this.showAdd=true;
-  }
-
   addReview(){
-    //console.log(this.user_to_add);
     this.reviewToAdd=new Review(
-      this.addReviewForm.value.username!,
-      "anonymous.png",
+      this.data_to_add.name,
+      this.data_to_add.profile_img,
       this.addReviewForm.value.comment!,
-      4 //Rating default
+      this.addReviewForm.value.rating,
     );
     this.reviewService.createReview(this.reviewToAdd).subscribe();
     this.ngOnInit();
