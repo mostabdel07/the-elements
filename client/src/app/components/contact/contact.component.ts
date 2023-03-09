@@ -13,6 +13,10 @@ export class ContactComponent {
       Validators.required,
       Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]),
 
+    subject: new FormControl('',[
+      Validators.required,
+      ]),
+
     message: new FormControl('',[
       Validators.required])
   })

@@ -4,6 +4,8 @@ import { ReviewService } from 'src/app/services/review.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { UserdbService } from 'src/app/services/userdb.service';
+import { User } from 'src/app/models/user/user';
 
 @Component({
   selector: 'app-features',
@@ -23,13 +25,15 @@ export class FeaturesComponent implements OnInit{
   isLoggedIn = false;
   ipp!: number;
   cp!: number;
+  data_to_add!: any;
+  //user_to_add!:User;
 
 
-  constructor(private reviewService:ReviewService, private authService: AuthService, private storageService: StorageService){}
+  constructor(private reviewService:ReviewService, private authService: AuthService, private storageService: StorageService, private userService: UserdbService){}
 
   addReviewForm=new FormGroup({
  
-    username:new FormControl('',[
+    username:new FormControl(``,[
       Validators.required,
     ]),
 
@@ -49,8 +53,9 @@ export class FeaturesComponent implements OnInit{
     this.cp = 1;
     this.showAdd=false;
     this.showGet=false;
-
+    this.getUser();
     this.getReviews();
+    
 
    // Check the obserbable status
     this.authService.isLoggedIn.subscribe((status) => {
@@ -67,6 +72,18 @@ export class FeaturesComponent implements OnInit{
     console.log(this.reviews);
    })    
  }
+
+  getUser(){
+    this.userService.getUser().subscribe( {
+      next: (data) => {
+        this.data_to_add=data;
+        //this.user_to_add= new User(this.data_to_add.id,this.data_to_add.name,this.data_to_add.password,this.data_to_add.email)
+      },
+      error: (err) => {
+        console.log('No se ha podido encontrar el usuario');
+      },
+     });
+  }
 
 
   modifyReview(review: any){
@@ -95,6 +112,7 @@ export class FeaturesComponent implements OnInit{
   }
 
   addReview(){
+    //console.log(this.user_to_add);
     this.reviewToAdd=new Review(
       this.addReviewForm.value.username!,
       "anonymous.png",

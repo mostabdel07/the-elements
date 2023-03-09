@@ -1,8 +1,7 @@
 <section class="bg-ctm-purple">
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
     <h2
-      class="mb-4 text-4xl tracking-tight font-extrabold text-center text-white"
-    >
+      class="mb-4 text-4xl tracking-tight font-extrabold text-center text-white">
       Contáctanos
     </h2>
     <p class="mb-8 lg:mb-16 font-light text-center text-gray-400 sm:text-xl">
@@ -11,59 +10,82 @@
     </p>
     <form class="space-y-8" [formGroup]="contactForm" (ngSubmit)="submit()">
       <div>
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-300"
-          >Correo electrónico</label
-        >
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Correo
+          electrónico</label>
         <input
           type="email"
           id="email"
           formControlName="email"
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 block w-full p-2.5 placeholder-gray-400 focus:border-primary-500 shadow-sm-light"
+          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900
+          text-sm rounded-lg focus:ring-primary-500 block w-full p-2.5
+          placeholder-gray-400 focus:border-primary-500 shadow-sm-light"
           placeholder="ejemplo@email.com"
-        />
+          />
         <div
           class="text-ctm-red"
           *ngIf="this.contactForm.get('email')?.errors?.['required']
-                    &&
-                    this.contactForm.get('email')?.touched"
-        >
+          &&
+          this.contactForm.get('email')?.touched">
           El email es obligatorio.
         </div>
         <div
           class="text-ctm-red"
           *ngIf="this.contactForm.get('email')?.errors?.['pattern'] &&
-                    this.contactForm.get('email')?.touched"
-        >
+          this.contactForm.get('email')?.touched">
           El email no tiene el formato correcto
+        </div>
+      </div>
+      <div>
+        <label for="subject" class="block mb-2 text-sm font-medium
+          text-gray-300">Asunto</label>
+        <input
+          type="text"
+          id="subject"
+          formControlName="subject"
+          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900
+          text-sm rounded-lg focus:ring-primary-500 block w-full p-2.5
+          placeholder-gray-400 focus:border-primary-500 shadow-sm-light"
+          />
+        <div
+          class="text-ctm-red"
+          *ngIf="this.contactForm.get('subject')?.errors?.['required']
+          &&
+          this.contactForm.get('subject')?.touched">
+          El asunto es obligatorio.
         </div>
       </div>
       <div class="sm:col-span-2">
         <label
           for="message"
-          class="block mb-2 text-sm font-medium text-gray-300"
-          >Deja tu mensaje</label
-        >
+          class="block mb-2 text-sm font-medium text-gray-300">Deja tu mensaje</label>
         <textarea
           id="message"
           rows="6"
           formControlName="message"
-          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400"
-          placeholder="..."
-        ></textarea>
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg
+          shadow-sm border border-gray-300 focus:ring-primary-500
+          focus:border-primary-500 placeholder-gray-400"
+          placeholder="..."></textarea>
         <div
           class="text-ctm-red"
           *ngIf="this.contactForm.get('message')?.errors?.['required']
-                    &&
-                    this.contactForm.get('message')?.touched"
-        >
+          &&
+          this.contactForm.get('message')?.touched">
           El mensaje de texto es obligatorio.
         </div>
       </div>
       <button
         type="submit"
         [disabled]="contactForm.invalid"
-        class="inline-block cursor-pointer rounded bg-neutral-50 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-neutral-800 shadow-[0_4px_9px_-4px_#fbfbfb] transition duration-150 ease-in-out hover:bg-neutral-100 hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)] focus:bg-neutral-100 focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)] focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]"
-      >
+        class="inline-block cursor-pointer rounded bg-neutral-50 px-6 pt-2.5
+        pb-2 text-xs font-medium uppercase leading-normal text-neutral-800
+        shadow-[0_4px_9px_-4px_#fbfbfb] transition duration-150 ease-in-out
+        hover:bg-neutral-100
+        hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]
+        focus:bg-neutral-100
+        focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]
+        focus:outline-none focus:ring-0 active:bg-neutral-200
+        active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.3),0_4px_18px_0_rgba(251,251,251,0.2)]">
         Enviar
       </button>
     </form>
