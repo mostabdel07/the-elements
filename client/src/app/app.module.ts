@@ -18,6 +18,7 @@ import { UsersComponent } from './components/users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RegisterComponent } from './components/register/register.component';
 import { MatchPasswordDirective } from './directives/match-password.directive';
+import { RecordComponent } from './components/record/record.component';
 
 // Interceptors
 import { AuthInterceptorService } from './auth-interceptor.service';
@@ -36,6 +37,7 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     ObjToArrayPipe,
     UsersComponent,
     RegisterComponent,
+    RecordComponent,
     MatchPasswordDirective
   ],
   imports: [

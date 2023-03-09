@@ -53,7 +53,6 @@ export class FeaturesComponent implements OnInit{
     this.cp = 1;
     this.showAdd=false;
     this.showGet=false;
-    this.getUser();
     this.getReviews();
     
 
@@ -73,17 +72,17 @@ export class FeaturesComponent implements OnInit{
    })    
  }
 
-  getUser(){
-    this.userService.getUser().subscribe( {
-      next: (data) => {
-        this.data_to_add=data;
-        //this.user_to_add= new User(this.data_to_add.id,this.data_to_add.name,this.data_to_add.password,this.data_to_add.email)
-      },
-      error: (err) => {
-        console.log('No se ha podido encontrar el usuario');
-      },
-     });
-  }
+  // getUser(){
+  //   this.userService.getUser().subscribe( {
+  //     next: (data) => {
+  //       this.data_to_add=data;
+  //       //this.user_to_add= new User(this.data_to_add.id,this.data_to_add.name,this.data_to_add.password,this.data_to_add.email)
+  //     },
+  //     error: (err) => {
+  //       console.log('No se ha podido encontrar el usuario');
+  //     },
+  //    });
+  // }
 
 
   modifyReview(review: any){
