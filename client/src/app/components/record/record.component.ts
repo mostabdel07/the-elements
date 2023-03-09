@@ -17,10 +17,10 @@ export class RecordComponent implements OnInit {
   ngOnInit(): void {
     this.recordService.getRecord().subscribe({
       next: data => {
-        console.log('data' , data);
-            data.forEach((game:any) => {
-              this.gamesRecord.push(new Game(game.id, game.map_name,game.map_img, game.score, game.datetime, game.users));
-      });
+        console.log('data', data);
+        data.forEach((game: any) => { 
+          this.gamesRecord.push(new Game(game.id, game.map_name,game.map_img, game.score, game.datetime, game.users));
+        });
       console.log(this.gamesRecord);
       },
       error: err => {

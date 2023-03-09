@@ -212,13 +212,13 @@
             >
               <img
                 class="w-10 h-10 rounded-full"
-                src="./assets/images/characters/Rockboy.png"
+                src="./assets/images/characters/{{player.char_img}}"
                 alt=""
               />
               <div class="font-medium dark:text-white">
-                <div>{{ player }}</div>
+                <div>{{ player.username}}</div>
                 <div class="text-sm text-gray-500 dark:text-gray-400">
-                  Rocky Boy
+                  {{player.char_name}}
                 </div>
               </div>
             </div>
