@@ -10,6 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuardGuard } from './Gards/auth-guard.guard';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecordComponent } from './components/record/record.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'contact',
     component:ContactComponent
+  },
+  {
+    path:'record',
+    component:RecordComponent
   },
   {
     path:'users',
