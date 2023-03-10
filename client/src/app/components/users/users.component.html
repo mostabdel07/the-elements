@@ -24,7 +24,6 @@
       </div>
     </div>
 
-    <!--Responsive table-->
     <table class="min-w-full border-collapse block md:table">
       <thead class="md:block lg:table-header-group lg:block,text-center hidden">
         <tr
@@ -37,14 +36,15 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody class="block md:table-row-group">
+      <tbody class="block md:table-row-group bg-gray-900">
         <tr
           *ngFor="
           let user of users
           | paginate : { itemsPerPage: ipp, currentPage: cp }
           "
-          class="bg-white border-b border-b-grey-500 hover:bg-ctm-light-blue
+          class="bg-gray-900 border-b border-b-grey-500 hover:bg-slate-700 text-white
           md:border-none block md:table-row">
+
           <td class="p-2 block md:table-cell md:text-center">
             <span class="inline-block items-start w-1/3 md:hidden font-bold">ID</span>{{
             user.id }}
@@ -128,7 +128,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="flex w-full justify-center bg-white">
+        <div class="flex w-full justify-center pt-10 bg-gray-900">
           <div>
             <pagination-controls (pageChange)="cp= $event"></pagination-controls>
           </div>
