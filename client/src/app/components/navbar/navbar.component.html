@@ -11,7 +11,7 @@
       <ng-template #logout>
         <a
           href="/login"
-          class="relative inline-flex items-center justify-center  p-4 px-5 py-3 overflow-hidden font-medium text-ctm-darck-blue rounded-full shadow-2xl group"
+          class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-ctm-darck-blue rounded-full shadow-2xl group"
         >
           <span
             class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-ctm-red rounded-full blur-md ease"
@@ -33,7 +33,7 @@
       </ng-template>
       <div
         *ngIf="isLoggedIn; else logout"
-        class="relative "
+        class="relative"
         data-te-dropdown-ref
       >
         <button
@@ -46,7 +46,7 @@
         >
           <span class="sr-only">Open user menu</span>
           <img
-            src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
+            src="./assets/images/avatars/{{ userData.profile_img }}"
             class="w-10 h-10 rounded-full shadow-lg shadow-black/30"
           />
         </button>

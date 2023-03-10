@@ -1,24 +1,23 @@
 import {
   Component,
   Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
+  OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/models/user/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { UserdbService } from 'src/app/services/userdb.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit, OnChanges {
+export class NavbarComponent implements OnInit {
+  [x: string]: any;
   @Input() logged!: boolean;
-
+  userData!:any;
   showMenu = false;
   showUser = false;
   isLoggedIn = false;
@@ -33,27 +32,29 @@ export class NavbarComponent implements OnInit, OnChanges {
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private userCookie: CookieService,
+    private userService: UserdbService,
     private router: Router
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    let change = changes['logged'];
 
-    if (change.currentValue === true) {
-      this.isLoggedIn = true;
-      console.log('estoy logueado');
-    } else {
-      this.isLoggedIn = false;
-      console.log('no estoy logueado');
-    }
-  }
 
   ngOnInit(): void {
     // Check the obserbable status
     this.authService.isLoggedIn.subscribe((status) => {this.isLoggedIn = status;});
     // Check if user is in localStorage
     this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if(this.isLoggedIn){
+      this.userService.getUser().subscribe( {
+        next: (data) => {
+          console.log(data);
+    
+         this.userData = data;
+        },
+        error: (err) => {
+          console.log('No se ha podido encontrar el usuario');
+        },
+       });
+    }
   }
 
   getLogout(): void {
@@ -61,7 +62,7 @@ export class NavbarComponent implements OnInit, OnChanges {
     console.log(this.token);
     //this.authService.logout(this.token);
     this.storageService.removeUser();
-    this.userCookie.delete('userCookie');
+
     this.isLoggedIn = false;
     this.router.navigate(['/']);
   }

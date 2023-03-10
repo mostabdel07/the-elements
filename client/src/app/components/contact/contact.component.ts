@@ -38,14 +38,10 @@ export class ContactComponent implements OnInit {
     this.contactService.sendContact(email, subject, message).subscribe({
 
       next: (data) => {
-        alert('enviado');
-
         this.resetInputsvalues();
-       
-      
+         
       },
       error: (err) => {
-        alert('error');
 
         }
       });
@@ -53,9 +49,7 @@ export class ContactComponent implements OnInit {
 
 
   resetInputsvalues() {
-    this.contactForm.controls.email.setValue('');
-    this.contactForm.controls.subject.setValue('');
-    this.contactForm.controls.message.setValue('');
+      this.contactForm.reset();
   }
 
 

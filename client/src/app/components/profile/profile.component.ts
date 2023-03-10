@@ -9,7 +9,7 @@ import { UserdbService } from 'src/app/services/userdb.service';
 export class ProfileComponent implements OnInit {
   userData!:any;
   
-  constructor(    private userService: UserdbService) {}
+  constructor(private userService: UserdbService) {}
 
   ngOnInit(): void {
           // Recoger datos necesarios para perfil

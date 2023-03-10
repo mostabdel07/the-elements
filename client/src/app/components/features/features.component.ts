@@ -85,7 +85,14 @@ export class FeaturesComponent implements OnInit{
       this.addReviewForm.value.comment!,
       this.addReviewForm.value.rating,
     );
-    this.reviewService.createReview(this.reviewToAdd).subscribe();
+    this.reviewService.createReview(this.reviewToAdd).subscribe({
+      next: (data) => {
+        this.resetInputsvalues();     
+      },
+      error: (err) => {
+
+        }
+    });
     this.ngOnInit();
 }
 
@@ -98,5 +105,10 @@ export class FeaturesComponent implements OnInit{
 ratingCounter(i: number) {
   return new Array(i);
 }
+
+resetInputsvalues() {
+  this.addReviewForm.reset();
+}
+
 }
 
