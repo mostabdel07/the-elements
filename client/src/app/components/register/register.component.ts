@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserdbService } from 'src/app/services/userdb.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,7 @@ export class RegisterComponent {
 
   register_message!: string;
 
-  constructor(public userService: UserdbService) { }
+  constructor(public userService: UserdbService, public authService: AuthService, private router: Router) { }
   
   registerForm = new FormGroup({
     username: new FormControl('', [
@@ -35,9 +37,10 @@ export class RegisterComponent {
         this.registerForm.value.password!,
         this.registerForm.value.email!
       );
-      this.userService.addUser(aux_user).subscribe({
+      this.authService.register(aux_user).subscribe({
         next: (data) => {
           this.register_message = 'success';
+          this.router.navigate(['login']);
         },
         error: (err) => {
           this.register_message = 'error';

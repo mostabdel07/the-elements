@@ -29,4 +29,20 @@ export class AuthService {
       })
     );
   }
+
+  register(user_to_add: User): Observable<any> {
+    let name = user_to_add.username;
+    let email = user_to_add.email;
+    let password = user_to_add.password;
+
+    let body = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    return this.http.post('http://localhost:8000/api/register', body, {
+      responseType: 'json',
+    });
+  }
 }
