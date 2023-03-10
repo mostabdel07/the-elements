@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     const { username, password } = this.form;
 
-    this.authService.login(username, password).subscribe((res) => {
+    let response = this.authService.login(username, password).subscribe((res) => {
+      console.log(res)
       if (res !== null) {
         console.log(res); //devuelve token
         console.log('respuesta bd');
@@ -60,6 +61,11 @@ export class LoginComponent implements OnInit {
         this.errorMessage = 'Incorrects username or password';
         console.log(this.errorMessage);
       }
+    },
+      (error) => {
+        this.errorMessage = error.error.message;
     });
+
+    console.log(response)
   }
 }
