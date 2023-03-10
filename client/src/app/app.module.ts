@@ -22,6 +22,7 @@ import { RecordComponent } from './components/record/record.component';
 
 // Interceptors
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { CheckRatingDirective } from './directives/check-rating.directive';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     UsersComponent,
     RegisterComponent,
     RecordComponent,
-    MatchPasswordDirective
+    MatchPasswordDirective,
+    CheckRatingDirective
   ],
   imports: [
     BrowserModule,
