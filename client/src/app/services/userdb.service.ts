@@ -20,7 +20,7 @@ export class UserdbService {
       password: password,
     };
 
-    return this.http.post('http://localhost:8000/api/users', body, {
+    return this.http.post('http://api.thelements.games/api/users', body, {
       responseType: 'json',
     });
   }
@@ -37,25 +37,25 @@ export class UserdbService {
       password: password,
     };
 
-    return this.http.put(`http://localhost:8000/api/users/${id}`, body, {
+    return this.http.put(`http://api.thelements.games/api/users/${id}`, body, {
       responseType: 'json',
     });
   }
 
   getUsers(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/users', {
+    return this.http.get('http://api.thelements.games/api/users', {
       responseType: 'json',
     });
   }
 
   deleteUser(user_id: any): Observable<any> {
-    let url = `http://localhost:8000/api/users/${user_id}`;
+    let url = `http://api.thelements.games/api/users/${user_id}`;
 
     return this.http.delete<User>(url, { responseType: 'json' });
   }
 
   getUser() {
-    return this.http.get(` http://localhost:8000/api/users/id`, {
+    return this.http.get(` http://api.thelements.games/api/users/id`, {
       responseType: 'json',
     });
   }
