@@ -12,22 +12,22 @@ export class ReviewService {
 
 
   getReviews():Observable<any>{
-    return this.http.get('http://api.thelements.games/api/reviews', { responseType: 'json' });
+    return this.http.get('https://www.thelements.games/api/reviews', { responseType: 'json' });
   }
 
   getReview(reviewId: number):Observable<any>{
-    return this.http.get('http://api.thelements.games/api/reviews/'+reviewId, { responseType: 'json' });
+    return this.http.get('https://www.thelements.games/api/reviews/'+reviewId, { responseType: 'json' });
   }
 
   createReview(review: Review){
-    return this.http.post('http://api.thelements.games/api/reviews', review, { responseType: 'json' });
+    return this.http.post('https://www.thelements.games/api/reviews', review, { responseType: 'json' });
   }
 
   updateReview(reviewId: number, review: Review){
-    return this.http.put('http://api.thelements.games/api/reviews/'+reviewId,review, { responseType: 'json' });
+    return this.http.put('https://www.thelements.games/api/reviews/'+reviewId,review, { responseType: 'json' });
   }
 
   deleteReview(reviewId: number){
-    return this.http.delete('http://api.thelements.games/api/reviews/'+reviewId, { responseType: 'json' });
+    return this.http.delete('https://www.thelements.games/api/reviews/'+reviewId, { responseType: 'json' });
   }
 }

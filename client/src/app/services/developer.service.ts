@@ -13,25 +13,25 @@ export class DeveloperService {
 
 
   getDeveloperBoard(): Observable<Object[]>{//tipar correctamente mas adelante
-    return this.http.get<any[]>('http://api.thelements.games/api/team', {responseType: 'json'})
+    return this.http.get<any[]>('https://www.thelements.games/api/team', {responseType: 'json'})
   }
 
   getDeveloper(id:any):Observable<Object[]>{
-    return this.http.get<any[]>(`http://api.thelements.games/team/${id}`, {responseType: 'json'})
+    return this.http.get<any[]>(`https://www.thelements.games/team/${id}`, {responseType: 'json'})
   }
 
   updateDescription(id:any, updated_description:any):Observable<Developer>{
-    return this.http.put<Developer>(`http://api.thelements.games/team/${id}`,{description: updated_description}, {
+    return this.http.put<Developer>(`https://www.thelements.games/team/${id}`,{description: updated_description}, {
       params:id,
       responseType: "json"
      })
   }
 
   addDeveloper(dev:Object):Observable<Developer>{
-    return this.http.post<Developer>('http://api.thelements.games/team',dev, {responseType: 'json'})
+    return this.http.post<Developer>('https://www.thelements.games/team',dev, {responseType: 'json'})
   }
 
   deleteDeveloper(id:any):Observable<any>{
-    return this.http.delete<Developer>(`http://api.thelements.games/team/${id}`, {responseType: 'json'})
+    return this.http.delete<Developer>(`https://www.thelements.games/team/${id}`, {responseType: 'json'})
   }
 }

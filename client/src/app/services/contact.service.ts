@@ -17,7 +17,7 @@ export class ContactService {
       message: message,
     };
 
-    return this.http.post('http://api.thelements.games/api/contact', body, {
+    return this.http.post('https://www.thelements.games/api/contact', body, {
       responseType: 'json',
     });
   }
