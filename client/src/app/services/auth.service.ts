@@ -41,7 +41,7 @@ export class AuthService {
       password: password,
     };
 
-    return this.http.post('https://api.thelements.games/api/register', body, {
+    return this.http.post('http://api.thelements.games/api/register', body, {
       responseType: 'json',
     });
   }
