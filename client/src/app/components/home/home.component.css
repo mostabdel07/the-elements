@@ -69,6 +69,12 @@
     height: 32rem;
   }
 
+  @media (max-width: 600px) {
+    .container img {
+        height: 12rem;
+      }
+  }
+
 .container .btn {
     position: absolute;
     top: 50%;
@@ -140,7 +146,5 @@ width: 50px;
 height: 35px;
 z-index: 20;
 cursor: pointer;
-    right: 20px;
-top: 30px;
 margin-right: 0;
 }

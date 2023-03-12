@@ -17,7 +17,7 @@ export class AuthService {
     const user: object = {email: email, password: password };
     console.log(user);
 
-    return this.http.post('https://api.thelements.games/api/login', user, {
+    return this.http.post('http://api.thelements.games/api/login', user, {
       responseType: 'json',
     }).pipe(
       map(res => {

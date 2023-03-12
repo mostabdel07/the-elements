@@ -10,7 +10,7 @@ export class RecordService {
   constructor(private http: HttpClient) { }
 
   getRecord():Observable<any>{
-    return this.http.get('https://api.thelements.games/api/games', { responseType: 'json' });
+    return this.http.get('http://api.thelements.games/api/games', { responseType: 'json' });
   }
 
 }
